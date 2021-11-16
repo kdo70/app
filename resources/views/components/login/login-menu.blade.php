@@ -27,13 +27,22 @@
         </li>
     </ul>
 </div>
-<script>
-    $('a[data-modal]').click(function () {
-        $('.login').hide();
-        $('.login-menu').hide();
-        $(this).modal({
-            modalClass: $(this).attr('id'),
+@push('scripts')
+    <script>
+        $('a[data-modal]').click(function () {
+            $('.login').hide();
+            $('.login-menu').hide();
+            $(this).modal({
+                modalClass: $(this).attr('id'),
+                showClose: false,
+            });
+            return false;
         });
-        return false;
-    });
-</script>
+        $(function() {
+            $(document).on($.modal.CLOSE, function () {
+                $('.login').show();
+                $('.login-menu').show();
+            });
+        });
+    </script>
+@endpush

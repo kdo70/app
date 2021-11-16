@@ -12,6 +12,7 @@
     {{-- style:end --}}
     {{-- script:start --}}
     <script src="js/jquery.js"></script>
+    <script src="js/mask.js"></script>
     {{-- script:end --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
@@ -21,19 +22,17 @@
 </body>
 @stack('scripts')
 <script>
-    $.modal.BEFORE_BLOCK = 'login-logo';
-    console.log($.modal);
-    $({{request()->route()->getName()}}).addClass("active nohover");
-</script><script type="text/javascript" charset="utf-8">
-    $(function() {
-
-        function log_modal_event(event, modal) {
-            $('.login').show();
-            $('.login-menu').show();
-            if(typeof console != 'undefined' && console.log) console.log("[event] " + event.type);
-        };
-
-        $(document).on($.modal.CLOSE, log_modal_event);
+    $(document).on("ajaxComplete", function (e) {
+        Inputmask({
+            alias: "datetime", inputFormat: "dd-mm-yyyy",
+            min: '01/01/1960',
+            max: '01/01/2015'
+        }).mask("birthday");
+        Inputmask({mask: {"mask": "Aa{1,20}"}}).mask("name");
+        Inputmask({mask: {"mask": "aa{1,20}"}}).mask("username");
+        Inputmask({mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]"}).mask("email");
+        Inputmask({mask: {"mask": "(999) 999-9999"}}).mask("phone");
     });
+    $({{request()->route()->getName()}}).addClass("active nohover");
 </script>
 </html>

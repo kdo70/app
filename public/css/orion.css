@@ -722,6 +722,7 @@ input {
     width: 94px;
     height: 21px;
 }
+
 .login-menu li a {
     background-image: url(../img/cb/bigbutton.png);
     background-repeat: no-repeat;
@@ -751,9 +752,96 @@ input {
     right: 0;
     bottom: 0;
     left: 0;
-    margin: auto;
+    margin: auto;    text-align: left;
 }
-.blocker{
-    background-color: rgba(0,0,0,0);
 
+.blocker {
+    background-color: rgba(0, 0, 0, 0);
+
+}
+
+.registration-form {
+    margin: 10px 10px 5px;
+}
+
+.registration-form-left {
+    width: 245px;
+    float: left;
+}
+
+.registration-form-right {
+    width: 270px;
+    float: right;
+}
+
+
+.registration-text-input {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(57, 56, 57, 0.8);
+    width: 120px;
+    height: 13px;
+    float: right;
+}
+
+.registration-text-input:focus {
+    background-color: rgba(32, 32, 32, 0.6);
+    border: 1px solid rgba(57, 56, 57, 1);
+    outline: none !important;
+}
+
+.registration-input {
+    float: right;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2px 5px 2px 5px;
+    border-left: 1px solid rgba(132, 121, 99, 0.5);
+    margin-bottom: 3px;
+}
+
+.registration-placeholder {
+    color: #B09979;
+    width: 230px;
+    float: left;
+}
+
+.registration-plus {
+    color: #A3DC96;
+}
+.registration-required {
+    color: #FFFC00;
+}
+
+.registration-required .registration-requiredText {
+    visibility: hidden;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    border-radius: 1px;
+    padding: 2px 0;
+    margin-top: -3px;
+    margin-left: -107px;
+    position: absolute;
+    z-index: 1;
+}
+
+.registration-required:hover .registration-requiredText {
+    visibility: visible;
+}
+
+.registration-plus .registration-plusText {
+    visibility: hidden;
+    width: 160px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    border-radius: 1px;
+    padding: 2px 0;
+    margin-top: -3px;
+    margin-left: -167px;
+    position: absolute;
+    z-index: 1;
+}
+
+.registration-plus:hover .registration-plusText {
+    visibility: visible;
 }
