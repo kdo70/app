@@ -11,7 +11,7 @@
                 </span>
                 Электронная почта
             </label>
-            <input class="registration-text-input" type="text" name="email" value="{{ old('email') }}"
+            <input class="rfield registration-text-input" type="text" name="email" value="{{ old('email') }}"
                    autocomplete="off" id="email">
             <div class="registration-placeholder">
                 Мы не будем отправлять вам рассылку без вашего согласия,
@@ -29,7 +29,7 @@
                 </span>
                 Имя пользователя
             </label>
-            <input class="registration-text-input" type="text" name="username" value="{{ old('username') }}"
+            <input class="rfield registration-text-input" type="text" name="username" value="{{ old('username') }}"
                    autocomplete="off" id="username">
             <div class="registration-placeholder">
                 Будет использовано для идентификации пользователя, при входе в личный кабинет.
@@ -45,7 +45,7 @@
                 </span>
                 Пароль
             </label>
-            <input class="registration-text-input" type="password" name="password" autocomplete="off">
+            <input class="rfield registration-text-input" type="password" name="password" autocomplete="off">
             <div class="registration-placeholder">
                 Требуется для входа в личный кабинет.
             </div>
@@ -60,7 +60,7 @@
                 </span>
                 Повторите пароль
             </label>
-            <input class="registration-text-input" type="password" name="rePassword" autocomplete="off">
+            <input class="rfield registration-text-input" type="password" name="rePassword" autocomplete="off">
             <div class="registration-placeholder">
                 Требуется, что бы проверить что вы не ошиблись при вводе пароля.
             </div>
@@ -106,7 +106,7 @@
     </div>
     <div class="registration-form-right">
         <div class="registration-input">
-            <label for="phone">
+            <label for="experience">
                     <span class="registration-plus">
                         <span class="registration-plusText">
                                 <span class="registration-plus">
@@ -118,8 +118,14 @@
                     </span>
                 Опыт игры
             </label>
-            <input class="registration-text-input" type="text" name="phone" value="{{ old('phone') }}"
-                   autocomplete="off" id="phone">
+            <select id="experience" name="experience">
+                <option value="hide">Select</option>
+                <option value="january">Более 10 лет</option>
+                <option value="february">Более 5 лет</option>
+                <option value="march">Более 3 лет</option>
+                <option value="april">Более 1 года</option>
+                <option value="may">Играю впервые</option>
+            </select>
             <div class="registration-placeholder">
                 Вы опытный игрок, или совсем новичок?
             </div>
@@ -137,7 +143,14 @@
                     </span>
                 Любимая профессия
             </label>
-            <input class="registration-text-input" type="password" name="rePassword" autocomplete="off">
+            <select id="experience" name="experience">
+                <option value="hide">Select</option>
+                <option value="january">Более 10 лет</option>
+                <option value="february">Более 5 лет</option>
+                <option value="march">Более 3 лет</option>
+                <option value="april">Более 1 года</option>
+                <option value="may">Играю впервые</option>
+            </select>
             <div class="registration-placeholder">
                 Duelist или Mystic Muse, а может быть Dominator?
             </div>
@@ -155,7 +168,14 @@
                     </span>
                 Любимый город
             </label>
-            <input class="registration-text-input" type="password" name="rePassword" autocomplete="off">
+            <select id="experience" name="experience">
+                <option value="hide">Select</option>
+                <option value="january">Более 10 лет</option>
+                <option value="february">Более 5 лет</option>
+                <option value="march">Более 3 лет</option>
+                <option value="april">Более 1 года</option>
+                <option value="may">Играю впервые</option>
+            </select>
             <div class="registration-placeholder">
                 Какой город нравится больше Talking Island Village или Town of Oren, или же другой?
             </div>
@@ -173,7 +193,14 @@
                     </span>
                 Любимая локация
             </label>
-            <input class="registration-text-input" type="password" name="rePassword" autocomplete="off">
+            <select id="experience" name="experience">
+                <option value="hide">Select</option>
+                <option value="january">Более 10 лет</option>
+                <option value="february">Более 5 лет</option>
+                <option value="march">Более 3 лет</option>
+                <option value="april">Более 1 года</option>
+                <option value="may">Играю впервые</option>
+            </select>
             <div class="registration-placeholder">
                 Какая из локаций наиболее атмосферная Execution Grounds или Antharas' Lair?
             </div>
@@ -191,7 +218,14 @@
                     </span>
                 Стиль игры
             </label>
-            <input class="registration-text-input" type="password" name="rePassword" autocomplete="off">
+            <select id="experience" name="experience">
+                <option value="hide">Select</option>
+                <option value="january">Более 10 лет</option>
+                <option value="february">Более 5 лет</option>
+                <option value="march">Более 3 лет</option>
+                <option value="april">Более 1 года</option>
+                <option value="may">Играю впервые</option>
+            </select>
             <div class="registration-placeholder">
                 Какой стиль игры вы предпочитаете?
             </div>
@@ -209,7 +243,14 @@
                     </span>
                 PK
             </label>
-            <input class="registration-text-input" type="password" name="rePassword" autocomplete="off">
+            <select id="experience" name="experience">
+                <option value="hide">Select</option>
+                <option value="january">Более 10 лет</option>
+                <option value="february">Более 5 лет</option>
+                <option value="march">Более 3 лет</option>
+                <option value="april">Более 1 года</option>
+                <option value="may">Играю впервые</option>
+            </select>
             <div class="registration-placeholder">
                 Убиваете ли вы игроков в PK?
             </div>
@@ -227,7 +268,14 @@
                     </span>
                 Великая олимпиада
             </label>
-            <input class="registration-text-input" type="password" name="rePassword" autocomplete="off">
+            <select id="experience" name="experience">
+                <option value="hide">Select</option>
+                <option value="january">Более 10 лет</option>
+                <option value="february">Более 5 лет</option>
+                <option value="march">Более 3 лет</option>
+                <option value="april">Более 1 года</option>
+                <option value="may">Играю впервые</option>
+            </select>
             <div class="registration-placeholder">
                 Участвуете ли вы в великой олимпиаде?
             </div>
@@ -245,18 +293,25 @@
                     </span>
                 Командный игрок
             </label>
-            <input class="registration-text-input" type="password" name="rePassword" autocomplete="off">
+            <select id="experience" name="experience">
+                <option value="hide">Select</option>
+                <option value="january">Более 10 лет</option>
+                <option value="february">Более 5 лет</option>
+                <option value="march">Более 3 лет</option>
+                <option value="april">Более 1 года</option>
+                <option value="may">Играю впервые</option>
+            </select>
             <div class="registration-placeholder">
                 Предпочитаете играть один или играете в команде?
             </div>
         </div>
     </div>
-    <div class="login-control">
-        <button class="login-button" type="submit">
+    <div class="registration-control">
+        <button class="btn_submit disabled login-button" type="submit">
             Submit
         </button>
-        <button class="login-button" type="reset" rel="modal:close">
+        <a class="modal-cancel-button" type="reset" rel="modal:close">
             Close
-        </button>
+        </a>
     </div>
 </form>

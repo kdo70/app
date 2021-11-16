@@ -22,17 +22,11 @@
 </body>
 @stack('scripts')
 <script>
-    $(document).on("ajaxComplete", function (e) {
-        Inputmask({
-            alias: "datetime", inputFormat: "dd-mm-yyyy",
-            min: '01/01/1960',
-            max: '01/01/2015'
-        }).mask("birthday");
-        Inputmask({mask: {"mask": "Aa{1,20}"}}).mask("name");
-        Inputmask({mask: {"mask": "aa{1,20}"}}).mask("username");
-        Inputmask({mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]"}).mask("email");
-        Inputmask({mask: {"mask": "(999) 999-9999"}}).mask("phone");
-    });
-    $({{request()->route()->getName()}}).addClass("active nohover");
+    try {
+
+        $({{request()->route()->getName()}}).addClass("active nohover");
+
+    }catch (e) {console.log("🕷️ <-- Паук! Ааа!");
+    }
 </script>
 </html>

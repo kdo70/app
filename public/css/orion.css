@@ -752,7 +752,8 @@ input {
     right: 0;
     bottom: 0;
     left: 0;
-    margin: auto;    text-align: left;
+    margin: auto;
+    text-align: left;
 }
 
 .blocker {
@@ -761,7 +762,7 @@ input {
 }
 
 .registration-form {
-    margin: 10px 10px 5px;
+    margin: 8px 10px 5px;
 }
 
 .registration-form-left {
@@ -806,6 +807,7 @@ input {
 .registration-plus {
     color: #A3DC96;
 }
+
 .registration-required {
     color: #FFFC00;
 }
@@ -830,7 +832,7 @@ input {
 
 .registration-plus .registration-plusText {
     visibility: hidden;
-    width: 160px;
+    width: 155px;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     text-align: center;
@@ -844,4 +846,92 @@ input {
 
 .registration-plus:hover .registration-plusText {
     visibility: visible;
+}
+
+.select-hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.select {
+    float: right;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    color: #E2DAC2;
+    padding-bottom: 5px;
+    padding-left: 2px;
+    width: 123px;
+    height: 11px;
+    border: 1px solid rgba(57, 56, 57, 0.8);
+    background: url(../img/cb/ScrollBarDownBtn.png) no-repeat right #000;
+}
+
+.select:hover {
+    background: url(../img/cb/scrollbardownbtn_over.png) no-repeat right #000;
+}
+
+.select-styled {
+    color: #E2DAC2;
+    font-size: 8pt;
+}
+
+.select-styled:active, .select-styled.active {
+    width: 124px;
+    height: 16px;
+    background: url(../img/cb/ScrollBarDownOnBtn.png) no-repeat right rgba(32, 32, 32, 0.6);
+}
+
+.select-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    margin: 0;
+    height: 6px;
+    padding: 0;
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.select-options li {
+    padding-left: 5px;
+    border: 1px solid #393839;
+    background-color: #101010;
+}
+
+.select-options li:hover {
+    color: #DCD9DC;
+    background: linear-gradient(to right, #2F4A72 70%, #000);
+}
+
+.select-options li[rel="hide"] {
+    display: none;
+}
+
+
+.modal-cancel-button {
+    background-image: url(../img/cb/bigbutton.png);
+    width: 94px;
+    height: 19px;
+    margin-right: 5px;
+    padding-top: 2px;
+    text-align: center;
+    position: absolute;
+}
+
+.modal-cancel-button:hover {
+    background-image: url(../img/cb/bigbutton_over.png);
+}
+
+.modal-cancel-button:active {
+    background-image: url(../img/cb/bigbutton_down.png);
+}
+
+.registration-control {
+    margin-top: 7px;
+    float: right;
+    margin-right: 124px;
 }
