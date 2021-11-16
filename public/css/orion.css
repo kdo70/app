@@ -871,15 +871,15 @@ input {
     background: url(../img/cb/scrollbardownbtn_over.png) no-repeat right #000;
 }
 
-.select-styled {
-    color: #E2DAC2;
-    font-size: 8pt;
+.select:active {
+    background: url(../img/cb/ScrollBarDownOnBtn.png) no-repeat right rgba(32, 32, 32, 0.6);
 }
 
-.select-styled:active, .select-styled.active {
-    width: 124px;
-    height: 16px;
-    background: url(../img/cb/ScrollBarDownOnBtn.png) no-repeat right rgba(32, 32, 32, 0.6);
+.select-styled {
+    white-space: nowrap;
+    color: #E2DAC2;
+    font-size: 8pt;
+    overflow: hidden;
 }
 
 .select-options {

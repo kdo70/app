@@ -67,7 +67,8 @@
                 $styledSelect.text($this.children('option').eq(0).text());
 
                 var $list = $('<ul />', {
-                    'class': 'select-options'
+                    'class': 'select-options',
+                    'style': 'height: 100px;max-height: 100px;overflow: auto;'
                 }).insertAfter($styledSelect);
 
                 for (var i = 0; i < numberOfOptions; i++) {

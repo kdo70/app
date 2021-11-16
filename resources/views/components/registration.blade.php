@@ -118,13 +118,39 @@
                     </span>
                 Опыт игры
             </label>
-            <select id="experience" name="experience">
+            <select id="experience" name="experience" size="2">
                 <option value="hide">Select</option>
                 <option value="january">Более 10 лет</option>
-                <option value="february">Более 5 лет</option>
-                <option value="march">Более 3 лет</option>
-                <option value="april">Более 1 года</option>
-                <option value="may">Играю впервые</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
+                <option value="january">Более 10 лет</option>
             </select>
             <div class="registration-placeholder">
                 Вы опытный игрок, или совсем новичок?
@@ -295,9 +321,9 @@
             </label>
             <select id="experience" name="experience">
                 <option value="hide">Select</option>
-                <option value="january">Более 10 лет</option>
-                <option value="february">Более 5 лет</option>
-                <option value="march">Более 3 лет</option>
+                <option value="january">Immortal Plateau, Northern Region</option>
+                <option value="february">Immortal Plateau, Southern Region</option>
+                <option value="march">Talking Island, Eastern Territory</option>
                 <option value="april">Более 1 года</option>
                 <option value="may">Играю впервые</option>
             </select>
