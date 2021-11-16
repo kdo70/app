@@ -142,58 +142,55 @@ class FormHandBookSeeder extends Seeder
 
 
         /*** table_form_town */
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Floran Village'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Gludin Village'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Heine'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Hunters Village'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Rune Township'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Town of Aden'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Town of Dion'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Town of Giran'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Town of Gludio'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Town of Goddard'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Town of Oren'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Town of Schuttgart'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Dark Elven Village'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Dwarven Village'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Elven Village'
         ]);
-        DB::table('table_form_profession')->insert([
-            'label' => 'Kamael Village'
-        ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Orc Village'
         ]);
-        DB::table('table_form_profession')->insert([
+        DB::table('table_form_town')->insert([
             'label' => 'Talking Island Village'
         ]);
         /*** table_form_town */
@@ -508,12 +505,6 @@ class FormHandBookSeeder extends Seeder
         ]);
         DB::table('table_form_location')->insert([
             'label' => 'Fields of Massacre'
-        ]);
-        DB::table('table_form_location')->insert([
-            'label' => 'Immortal Plateau, Northern Region'
-        ]);
-        DB::table('table_form_location')->insert([
-            'label' => 'Immortal Plateau, Northern Region'
         ]);
         DB::table('table_form_location')->insert([
             'label' => 'Immortal Plateau, Northern Region'

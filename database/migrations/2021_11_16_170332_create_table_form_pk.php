@@ -16,6 +16,8 @@ class CreateTableFormPk extends Migration
         Schema::create('table_form_pk', function (Blueprint $table) {
             $table->id();
             $table->string('label')->nullable(false)->comment('Лэйбл');
+            $table->boolean('visible')->nullable(false)->default(true)->comment('Видимый');
+            $table->integer('sort')->nullable(false)->default(0)->comment('Приоритет');
             $table->timestamps();
         });
     }
