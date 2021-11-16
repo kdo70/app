@@ -880,6 +880,8 @@ input {
     color: #E2DAC2;
     font-size: 8pt;
     overflow: hidden;
+    text-overflow:ellipsis;
+    -webkit-padding-end: 10px !important;
 }
 
 .select-options {
