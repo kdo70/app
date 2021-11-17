@@ -13,7 +13,7 @@ class CreateTableFormPk extends Migration
      */
     public function up()
     {
-        Schema::create('table_form_pk', function (Blueprint $table) {
+        Schema::create('form_pks', function (Blueprint $table) {
             $table->id();
             $table->string('label')->nullable(false)->comment('Лэйбл');
             $table->boolean('visible')->nullable(false)->default(true)->comment('Видимый');

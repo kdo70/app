@@ -13,7 +13,7 @@ class CreateTableFormOlympiad extends Migration
      */
     public function up()
     {
-        Schema::create('table_form_olympiad', function (Blueprint $table) {
+        Schema::create('form_olympiads', function (Blueprint $table) {
             $table->id();
             $table->string('label')->nullable(false)->comment('Лэйбл');
             $table->boolean('visible')->nullable(false)->default(true)->comment('Видимый');

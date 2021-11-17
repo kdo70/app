@@ -408,6 +408,10 @@ a {
 
 }
 
+::-webkit-scrollbar-track{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 /* Up */
 ::-webkit-scrollbar-button:single-button:vertical:decrement {
     background-image: url(../img/cb/ScrollBarUpBtn.png);
@@ -896,7 +900,6 @@ input {
     height: 6px;
     padding: 0;
     list-style: none;
-    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .select-options li {

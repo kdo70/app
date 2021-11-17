@@ -1,4 +1,4 @@
-<form method="POST" class="registration-form" action="{{ route('login') }}">
+<form method="POST" class="registration-form" action="">
     @csrf
     <div class="registration-form-left">
         <div class="registration-input">
@@ -119,45 +119,17 @@
                 Опыт игры
             </label>
             <select id="experience" name="experience" size="2">
-                <option value="hide">Select</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
-                <option value="january">Более 10 лет</option>
+                <option>-</option>
+                @foreach($experiences as $experience)
+                    <option value="{{$experience->id}}">{{$experience->label}}</option>
+                @endforeach
             </select>
             <div class="registration-placeholder">
                 Вы опытный игрок, или совсем новичок?
             </div>
         </div>
         <div class="registration-input">
-            <label for="rePassword">
+            <label for="profession">
                     <span class="registration-plus">
                         <span class="registration-plusText">
                                 <span class="registration-plus">
@@ -169,20 +141,18 @@
                     </span>
                 Любимая профессия
             </label>
-            <select id="experience" name="experience">
-                <option value="hide">Select</option>
-                <option value="january">Более 10 лет</option>
-                <option value="february">Более 5 лет</option>
-                <option value="march">Более 3 лет</option>
-                <option value="april">Более 1 года</option>
-                <option value="may">Играю впервые</option>
+            <select id="profession" name="professionId" size="2">
+                <option>-</option>
+                @foreach($professions as $profession)
+                    <option value="{{$profession->id}}">{{$profession->label}}</option>
+                @endforeach
             </select>
             <div class="registration-placeholder">
                 Duelist или Mystic Muse, а может быть Dominator?
             </div>
         </div>
         <div class="registration-input">
-            <label for="rePassword">
+            <label for="town">
                     <span class="registration-plus">
                         <span class="registration-plusText">
                                 <span class="registration-plus">
@@ -194,20 +164,18 @@
                     </span>
                 Любимый город
             </label>
-            <select id="experience" name="experience">
-                <option value="hide">Select</option>
-                <option value="january">Более 10 лет</option>
-                <option value="february">Более 5 лет</option>
-                <option value="march">Более 3 лет</option>
-                <option value="april">Более 1 года</option>
-                <option value="may">Играю впервые</option>
+            <select id="town" name="townId" size="2">
+                <option>-</option>
+                @foreach($towns as $town)
+                    <option value="{{$town->id}}">{{$town->label}}</option>
+                @endforeach
             </select>
             <div class="registration-placeholder">
                 Какой город нравится больше Talking Island Village или Town of Oren, или же другой?
             </div>
         </div>
         <div class="registration-input">
-            <label for="rePassword">
+            <label for="location">
                     <span class="registration-plus">
                         <span class="registration-plusText">
                                 <span class="registration-plus">
@@ -219,20 +187,18 @@
                     </span>
                 Любимая локация
             </label>
-            <select id="experience" name="experience">
-                <option value="hide">Select</option>
-                <option value="january">Более 10 лет</option>
-                <option value="february">Более 5 лет</option>
-                <option value="march">Более 3 лет</option>
-                <option value="april">Более 1 года</option>
-                <option value="may">Играю впервые</option>
+            <select id="location" name="locationId" size="2">
+                <option>-</option>
+                @foreach($locations as $location)
+                    <option value="{{$location->id}}">{{$location->label}}</option>
+                @endforeach
             </select>
             <div class="registration-placeholder">
                 Какая из локаций наиболее атмосферная Execution Grounds или Antharas' Lair?
             </div>
         </div>
         <div class="registration-input">
-            <label for="rePassword">
+            <label for="style">
                     <span class="registration-plus">
                         <span class="registration-plusText">
                                 <span class="registration-plus">
@@ -244,20 +210,18 @@
                     </span>
                 Стиль игры
             </label>
-            <select id="experience" name="experience">
-                <option value="hide">Select</option>
-                <option value="january">Более 10 лет</option>
-                <option value="february">Более 5 лет</option>
-                <option value="march">Более 3 лет</option>
-                <option value="april">Более 1 года</option>
-                <option value="may">Играю впервые</option>
+            <select id="style" name="styleId" size="2">
+                <option>-</option>
+                @foreach($styles as $style)
+                    <option value="{{$style->id}}">{{$style->label}}</option>
+                @endforeach
             </select>
             <div class="registration-placeholder">
                 Какой стиль игры вы предпочитаете?
             </div>
         </div>
         <div class="registration-input">
-            <label for="rePassword">
+            <label for="$pk">
                     <span class="registration-plus">
                         <span class="registration-plusText">
                                 <span class="registration-plus">
@@ -269,20 +233,18 @@
                     </span>
                 PK
             </label>
-            <select id="experience" name="experience">
-                <option value="hide">Select</option>
-                <option value="january">Более 10 лет</option>
-                <option value="february">Более 5 лет</option>
-                <option value="march">Более 3 лет</option>
-                <option value="april">Более 1 года</option>
-                <option value="may">Играю впервые</option>
+            <select id="pk" name="pkId" size="2">
+                <option>-</option>
+                @foreach($pks as $pk)
+                    <option value="{{$pk->id}}">{{$pk->label}}</option>
+                @endforeach
             </select>
             <div class="registration-placeholder">
                 Убиваете ли вы игроков в PK?
             </div>
         </div>
         <div class="registration-input">
-            <label for="rePassword">
+            <label for="olympiad">
                     <span class="registration-plus">
                         <span class="registration-plusText">
                                 <span class="registration-plus">
@@ -294,20 +256,18 @@
                     </span>
                 Великая олимпиада
             </label>
-            <select id="experience" name="experience">
-                <option value="hide">Select</option>
-                <option value="january">Более 10 лет</option>
-                <option value="february">Более 5 лет</option>
-                <option value="march">Более 3 лет</option>
-                <option value="april">Более 1 года</option>
-                <option value="may">Играю впервые</option>
+            <select id="olympiad" name="olympiadId">
+                <option>-</option>
+                @foreach($olympiads as $olympiad)
+                    <option value="{{$olympiad->id}}">{{$olympiad->label}}</option>
+                @endforeach
             </select>
             <div class="registration-placeholder">
                 Участвуете ли вы в великой олимпиаде?
             </div>
         </div>
         <div class="registration-input">
-            <label for="rePassword">
+            <label for="command">
                     <span class="registration-plus">
                         <span class="registration-plusText">
                                 <span class="registration-plus">
@@ -319,13 +279,11 @@
                     </span>
                 Командный игрок
             </label>
-            <select id="experience" name="experience">
-                <option value="hide">Select</option>
-                <option value="january">Immortal Plateau, Northern Region</option>
-                <option value="february">Immortal Plateau, Southern Region</option>
-                <option value="march">Talking Island, Eastern Territory</option>
-                <option value="april">Более 1 года</option>
-                <option value="may">Играю впервые</option>
+            <select id="command" name="commandId">
+                <option>-</option>
+                @foreach($commands as $command)
+                    <option value="{{$command->id}}">{{$command->label}}</option>
+                @endforeach
             </select>
             <div class="registration-placeholder">
                 Предпочитаете играть один или играете в команде?
