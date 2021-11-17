@@ -19,9 +19,8 @@
 </head>
 <body>
 @yield('body')
-</body>
 @stack('scripts')
-<script>
+<script type="text/javascript">
     try {
 
         $({{request()->route()->getName()}}).addClass("active nohover");
@@ -29,4 +28,5 @@
     }catch (e) {console.log("🕷️ <-- Паук! Ааа!");
     }
 </script>
+</body>
 </html>
