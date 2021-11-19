@@ -39,9 +39,9 @@
 
                 spinnerHtml: '<div class="preload-modal"><img src="img/cb/step.png" width="50" height="50" alt="Lineage 2 oath of blood preloader"></div>',
 
-                showSpinner: true,      // Enable/disable the default spinner during AJAX requests.
-                fadeDuration: null,     // Number of milliseconds the fade transition takes (null means no transition)
-                fadeDelay: 1.0          // P
+                showSpinner: true,
+                fadeDuration: null,
+                fadeDelay: 1.0
             });
             return false;
         });
@@ -173,16 +173,14 @@
                             lightEmpty();
                             return false
                         } else {
-                            var $form = $(this);
-                            var formData = new FormData(document.getElementsByName('.registration-form')[0]);
-                            console.log($form.serialize())
+                            console.log(form.attr('method'));
                             $.ajax({
-                                type: $form.attr('method'),
-                                url: formData,
-                                data: $form.serialize()
-                            }).done(function() {
+                                type: form.attr('method'),
+                                url: form.attr('action'),
+                                data: form.serialize()
+                            }).done(function () {
                                 console.log('success');
-                            }).fail(function() {
+                            }).fail(function () {
                                 console.log('fail');
                             });
                         }
@@ -193,8 +191,8 @@
         })(jQuery);
         // });
         //
-        $(function() {
-            $('.registration-form').submit(function(e) {
+        $(function () {
+            $('.registration-form').submit(function (e) {
                 //отмена действия по умолчанию для кнопки submit
                 e.preventDefault();
             });

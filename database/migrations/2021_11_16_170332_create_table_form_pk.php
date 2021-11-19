@@ -29,6 +29,6 @@ class CreateTableFormPk extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_form_pk');
+        Schema::dropIfExists('form_pks');
     }
 }

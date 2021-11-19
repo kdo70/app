@@ -1,5 +1,5 @@
 body {
-    background-image: url(../img/bg.webp);
+    background-image: url(/images/bg.webp?c1768ddbddb5f75fc2c7dbfbdfd8361d);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -18,8 +18,8 @@ body {
 }
 
 @font-face {
-    font-family: Roboto-Light; /* Гарнитура шрифта */
-    src: url(fonts/Roboto-Light.ttf); /* Путь к файлу со шрифтом */
+    font-family: Roboto-Light;
+    src: url(/fonts/Roboto-Light.ttf?8be2d1487420548b3b8ddba68270b26b);
 }
 
 a {
@@ -31,7 +31,7 @@ a {
 }
 
 .pc {
-    background-image: url(../img/cb/wnd_pcpoint_back.png);
+    background-image: url(/images/wnd_pcpoint_back.png?205e1167bd029d20867836c1f16994d1);
     background-repeat: no-repeat;
     width: 112px;
     height: 39px;
@@ -46,7 +46,7 @@ a {
 }
 
 .pc-tooltip {
-    background-image: url(../img/cb/icn_aboutpoint_down.png);
+    background-image: url(/images/icn_aboutpoint_down.png?51b5d8ee336b973e5ae44d1675f7c0a4);
     background-repeat: no-repeat;
     width: 14px;
     height: 14px;
@@ -58,7 +58,7 @@ a {
 }
 
 .pc-tooltip:hover {
-    background-image: url(../img/cb/icn_aboutpoint_over.png);
+    background-image: url(/images/icn_aboutpoint_over.png?c35433a5a598df1ab6fdf16a70deb218);
 }
 
 .pc-tooltip .pc-tooltipText {
@@ -88,7 +88,7 @@ a {
 }
 
 .cb {
-    background-image: url(../img/cb/FrameBack.png);
+    background-image: url(/images/FrameBack.png?fdd557396bc19b698d03099bf887575c);
     background-repeat: no-repeat;
     width: 646px;
     height: 530px;
@@ -107,7 +107,7 @@ a {
 }
 
 .manage {
-    background-image: url(../img/cb/smallbutton2.png);
+    background-image: url(/images/smallbutton2.png?238f5e6396f19d457b3100b8bbdf2a30);
     background-repeat: no-repeat;
     text-decoration: none;
     text-align: center;
@@ -122,19 +122,19 @@ a {
 }
 
 .manage:hover {
-    background-image: url(../img/cb/smallbutton2-ower.png);
+    background-image: url(/images/smallbutton2-ower.png?d9ef8aa65021a675bb9bd67fd134854a);
 }
 
 .manage:active {
-    background-image: url(../img/cb/smallbutton2-down.png);
+    background-image: url(/images/smallbutton2-down.png?bbcaca1be88316dff8eedc1c6f2ca14f);
 }
 
 .manage.active {
-    background-image: url(../img/cb/smallbutton2-down.png);
+    background-image: url(/images/smallbutton2-down.png?bbcaca1be88316dff8eedc1c6f2ca14f);
 }
 
 .close {
-    background-image: url(../img/cb/FrameCloseBtn.png);
+    background-image: url(/images/FrameCloseBtn.png?4b8b80ed94a5593b08f9afe82c2eea6c);
     background-repeat: no-repeat;
     position: absolute;
     top: 3px;
@@ -144,15 +144,15 @@ a {
 }
 
 .close:hover {
-    background-image: url(../img/cb/frameclosebtn_over.png);
+    background-image: url(/images/frameclosebtn_over.png?7fdc6989f20462ab86828898068f44d3);
 }
 
 .close:active {
-    background-image: url(../img/cb/FrameCloseOnBtn.png);
+    background-image: url(/images/FrameCloseOnBtn.png?b683a90f7a1dc05b064d9721586bc8d0);
 }
 
 .hide {
-    background-image: url(../img/cb/FrameMiniBtn.png);
+    background-image: url(/images/FrameMiniBtn.png?8c211b3bf917e1e4d834e922e3b8eb7b);
     background-repeat: no-repeat;
     position: absolute;
     top: 3px;
@@ -162,11 +162,11 @@ a {
 }
 
 .hide:hover {
-    background-image: url(../img/cb/frameminibtn_over.png);
+    background-image: url(/images/frameminibtn_over.png?e0b9158eca64f21ebdcb9d2e20df988d);
 }
 
 .hide:active {
-    background-image: url(../img/cb/FrameMiniOnBtn.png);
+    background-image: url(/images/FrameMiniOnBtn.png?870b0b991f88202c9ec1f157a1ff2dfb);
 }
 
 #tabs {
@@ -398,7 +398,7 @@ a {
 /* Handle */
 ::-webkit-scrollbar-thumb {
     width: 15px;
-    background-image: url(../img/cb/slider_cursor.png);
+    background-image: url(/images/slider_cursor.png?887ac6c0d90721da05c074f51ed51336);
     border-top: 1px solid rgba(181, 174, 140, 0.8);
     border-left: 1px solid rgba(189, 174, 132, 0.8);
     border-right: 1px solid rgba(115, 89, 41, 0.8);
@@ -414,33 +414,33 @@ a {
 
 /* Up */
 ::-webkit-scrollbar-button:single-button:vertical:decrement {
-    background-image: url(../img/cb/ScrollBarUpBtn.png);
+    background-image: url(/images/ScrollBarUpBtn.png?1ecb29141f37821497e6715a7cf8176e);
     height: 15px;
 }
 
 ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-    background-image: url(../img/cb/scrollbarupbtn_over.png);
+    background-image: url(/images/scrollbarupbtn_over.png?18e576ae315868a66b1d6f7655a3890f);
     height: 15px;
 }
 
 ::-webkit-scrollbar-button:single-button:vertical:decrement:active {
-    background-image: url(../img/cb/ScrollBarUpOnBtn.png);
+    background-image: url(/images/ScrollBarUpOnBtn.png?7dd5cf49511c51d85e3a3ae98643e1ce);
     height: 15px;
 }
 
 /* Down */
 ::-webkit-scrollbar-button:single-button:vertical:increment {
-    background-image: url(../img/cb/ScrollBarDownBtn.png);
+    background-image: url(/images/ScrollBarDownBtn.png?bc001898f5d28db11de2c5ac92cfbeb1);
     height: 14px;
 }
 
 ::-webkit-scrollbar-button:vertical:single-button:increment:hover {
-    background-image: url(../img/cb/scrollbardownbtn_over.png);
+    background-image: url(/images/scrollbardownbtn_over.png?054fb5d3bae71614492e6f811fdd6d77);
     height: 14px;
 }
 
 ::-webkit-scrollbar-button:vertical:single-button:increment:active {
-    background-image: url(../img/cb/ScrollBarDownOnBtn.png);
+    background-image: url(/images/ScrollBarDownOnBtn.png?8bd944cefc9b61dc7fa001154d02bed9);
     height: 14px;
 }
 
@@ -457,7 +457,8 @@ a {
 }
 
 .event p {
-    margin-block-start: 0em;
+    -webkit-margin-before: 0em;
+            margin-block-start: 0em;
 }
 
 .event-header {
@@ -522,7 +523,7 @@ a {
 }
 
 .event-more-btn {
-    background-image: url(../img/cb/smallbutton2.png);
+    background-image: url(/images/smallbutton2.png?238f5e6396f19d457b3100b8bbdf2a30);
     background-repeat: no-repeat;
     text-decoration: none;
     text-align: center;
@@ -530,11 +531,11 @@ a {
 }
 
 .event-more-btn:hover {
-    background-image: url(../img/cb/smallbutton2-ower.png);
+    background-image: url(/images/smallbutton2-ower.png?d9ef8aa65021a675bb9bd67fd134854a);
 }
 
 .event-more-btn:active {
-    background-image: url(../img/cb/smallbutton2-down.png);
+    background-image: url(/images/smallbutton2-down.png?bbcaca1be88316dff8eedc1c6f2ca14f);
 }
 
 
@@ -549,7 +550,7 @@ a {
 }
 
 .pagination-prev {
-    background-image: url(../img/cb/shortcut_prev.png);
+    background-image: url(/images/shortcut_prev.png?c56bf8411febdd05328ad3b833c6b2c1);
     float: left;
     text-decoration: none;
     margin: 0 1px;
@@ -558,15 +559,15 @@ a {
 }
 
 .pagination-prev:hover {
-    background-image: url(../img/cb/shortcut_prev_over.png);
+    background-image: url(/images/shortcut_prev_over.png?72cf659c83074af90f19ca7d06a20e02);
 }
 
 .pagination-prev:active {
-    background-image: url(../img/cb/shortcut_prev_down.png);
+    background-image: url(/images/shortcut_prev_down.png?20071ad745cf2d2adfd492ca9ecf18f9);
 }
 
 .pagination-page {
-    background-image: url(../img/cb/shortcut_num.png);
+    background-image: url(/images/shortcut_num.png?7b0f3c25d779fa91de1429c6059605e1);
     float: left;
     text-decoration: none;
     margin: 0 1px;
@@ -577,19 +578,19 @@ a {
 }
 
 .pagination-page:hover {
-    background-image: url(../img/cb/shortcut_num_over.png);
+    background-image: url(/images/shortcut_num_over.png?b79355b8160fd35b1fc50aa231cbf592);
 }
 
 .pagination-page:active {
-    background-image: url(../img/cb/shortcut_num_down.png);
+    background-image: url(/images/shortcut_num_down.png?5fbccee5cf6bafe32535a5bd5f812187);
 }
 
 .pagination-page.active {
-    background-image: url(../img/cb/shortcut_num_down.png);
+    background-image: url(/images/shortcut_num_down.png?5fbccee5cf6bafe32535a5bd5f812187);
 }
 
 .pagination-next {
-    background-image: url(../img/cb/shortcut_next.png);
+    background-image: url(/images/shortcut_next.png?c78517b37434d31c04a20939d2f3d522);
     float: left;
     text-decoration: none;
     margin: 0 1px;
@@ -598,16 +599,16 @@ a {
 }
 
 .pagination-next:hover {
-    background-image: url(../img/cb/shortcut_next_over.png);
+    background-image: url(/images/shortcut_next_over.png?04c40834e94a41df7dee534d70f0ef60);
 }
 
 .pagination-next:active {
-    background-image: url(../img/cb/shortcut_next_down.png);
+    background-image: url(/images/shortcut_next_down.png?e762b07f7a308c2ef613b283b08ff06a);
 }
 
 
 .login {
-    background-image: url(../img/cb/logon_back.png);
+    background-image: url(/images/logon_back.png?726487b98ab8197cc33e3a7930444c12);
     background-repeat: no-repeat;
     width: 256px;
     height: 108px;
@@ -655,18 +656,18 @@ a {
 }
 
 .login-button {
-    background-image: url(../img/cb/bigbutton.png);
+    background-image: url(/images/bigbutton.png?634c1bf558796faadc1d09c6d0e6d41e);
     width: 94px;
     height: 21px;
     margin-right: 5px;
 }
 
 .login-button:hover {
-    background-image: url(../img/cb/bigbutton_over.png);
+    background-image: url(/images/bigbutton_over.png?290dec6fda0d7ce64ae00e7e2a929c7d);
 }
 
 .login-button:active {
-    background-image: url(../img/cb/bigbutton_down.png);
+    background-image: url(/images/bigbutton_down.png?9911b2bb88dc677ab9cf5793199a438c);
 }
 
 button {
@@ -708,7 +709,7 @@ input {
 }
 
 .login-menu {
-    background-image: url(../img/cb/lobby_menuback.png);
+    background-image: url(/images/lobby_menuback.png?d304a2dd608a4ce01e00737faa669d03);
     background-repeat: no-repeat;
     width: 120px;
     height: 138px;
@@ -728,7 +729,7 @@ input {
 }
 
 .login-menu li a {
-    background-image: url(../img/cb/bigbutton.png);
+    background-image: url(/images/bigbutton.png?634c1bf558796faadc1d09c6d0e6d41e);
     background-repeat: no-repeat;
     width: 94px;
     position: absolute;
@@ -738,16 +739,16 @@ input {
 }
 
 .login-menu li a:hover {
-    background-image: url(../img/cb/bigbutton_over.png);
+    background-image: url(/images/bigbutton_over.png?290dec6fda0d7ce64ae00e7e2a929c7d);
 }
 
 .login-menu li a:active {
-    background-image: url(../img/cb/bigbutton_down.png);
+    background-image: url(/images/bigbutton_down.png?9911b2bb88dc677ab9cf5793199a438c);
 }
 
 
 .registration {
-    background-image: url(../img/cb/lobby3_back.png);
+    background-image: url(/images/lobby3_back.png?cfc13394c754548e29e9e6717de80345);
     background-repeat: no-repeat;
     width: 546px;
     height: 425px;
@@ -868,15 +869,15 @@ input {
     width: 123px;
     height: 11px;
     border: 1px solid rgba(57, 56, 57, 0.8);
-    background: url(../img/cb/ScrollBarDownBtn.png) no-repeat right #000;
+    background: url(/images/ScrollBarDownBtn.png?bc001898f5d28db11de2c5ac92cfbeb1) no-repeat right #000;
 }
 
 .select:hover {
-    background: url(../img/cb/scrollbardownbtn_over.png) no-repeat right #000;
+    background: url(/images/scrollbardownbtn_over.png?054fb5d3bae71614492e6f811fdd6d77) no-repeat right #000;
 }
 
 .select:active {
-    background: url(../img/cb/ScrollBarDownOnBtn.png) no-repeat right rgba(32, 32, 32, 0.6);
+    background: url(/images/ScrollBarDownOnBtn.png?8bd944cefc9b61dc7fa001154d02bed9) no-repeat right rgba(32, 32, 32, 0.6);
 }
 
 .select-styled {
@@ -919,7 +920,7 @@ input {
 
 
 .modal-cancel-button {
-    background-image: url(../img/cb/bigbutton.png);
+    background-image: url(/images/bigbutton.png?634c1bf558796faadc1d09c6d0e6d41e);
     width: 94px;
     height: 19px;
     margin-right: 5px;
@@ -929,11 +930,11 @@ input {
 }
 
 .modal-cancel-button:hover {
-    background-image: url(../img/cb/bigbutton_over.png);
+    background-image: url(/images/bigbutton_over.png?290dec6fda0d7ce64ae00e7e2a929c7d);
 }
 
 .modal-cancel-button:active {
-    background-image: url(../img/cb/bigbutton_down.png);
+    background-image: url(/images/bigbutton_down.png?9911b2bb88dc677ab9cf5793199a438c);
 }
 
 .registration-control {
@@ -953,6 +954,15 @@ input {
     margin: auto;
 }
 
+@-webkit-keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
@@ -963,5 +973,7 @@ input {
 }
 
 .preload-modal img {
-    animation: spin 5s linear 0s infinite;
+    -webkit-animation: spin 5s linear 0s infinite;
+            animation: spin 5s linear 0s infinite;
 }
+

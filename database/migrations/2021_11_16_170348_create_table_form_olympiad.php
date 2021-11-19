@@ -29,6 +29,6 @@ class CreateTableFormOlympiad extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_form_olympiad');
+        Schema::dropIfExists('form_olympiads');
     }
 }

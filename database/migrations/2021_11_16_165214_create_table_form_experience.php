@@ -29,6 +29,6 @@ class CreateTableFormExperience extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_form_experience');
+        Schema::dropIfExists('form_experiences');
     }
 }

@@ -1,4 +1,4 @@
-<form method="POST" class="registration-form" action="">
+<form method="POST" class="registration-form" action={{route('index')}}>
     @csrf
     <div class="registration-form-left">
         <div class="registration-input">

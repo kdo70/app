@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\LoginController;
+use App\View\Components\Registration;
 use Illuminate\Support\Facades\Route;
 
 Route::group([], function () {
@@ -64,7 +65,9 @@ Route::prefix('template')->group(function () {
 
     /*** Шаблон окна - registration **/
     Route::get('/registration', function () {
-        return view('components.registration');
+        return (new Registration())->render();
+        return \Illuminate\Support\Facades\View::make('components.registration')->render();
+        return view('components.registration', app(Registration::class)->data());
     })->name('template.registration');
 
     /*** Шаблон окна - restore **/

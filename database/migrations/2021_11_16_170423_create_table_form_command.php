@@ -29,6 +29,6 @@ class CreateTableFormCommand extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_form_command');
+        Schema::dropIfExists('form_commands');
     }
 }

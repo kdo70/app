@@ -29,6 +29,6 @@ class CreateTableFormLocation extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_form_location');
+        Schema::dropIfExists('form_locations');
     }
 }

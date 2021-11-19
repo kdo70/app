@@ -813,10 +813,10 @@ class FormHandBookSeeder extends Seeder
 
         /*** form_command */
         DB::table('form_commands')->insert([
-            'label' => 'Один'
+            'label' => 'Да'
         ]);
         DB::table('form_commands')->insert([
-            'label' => 'В команде'
+            'label' => 'Нет'
         ]);
         /*** form_command */
     }

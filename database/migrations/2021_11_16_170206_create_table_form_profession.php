@@ -29,6 +29,6 @@ class CreateTableFormProfession extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_form_profession');
+        Schema::dropIfExists('form_professions');
     }
 }

@@ -29,6 +29,6 @@ class CreateTableFormStyle extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_form_style');
+        Schema::dropIfExists('form_styles');
     }
 }
