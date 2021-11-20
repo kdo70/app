@@ -45,7 +45,8 @@
                 </span>
                 Пароль
             </label>
-            <input class="rfield registration-text-input" type="password" name="password" autocomplete="off">
+            <input class="rfield registration-text-input" type="password" name="password"
+                   autocomplete="off" id="password">
             <div class="registration-placeholder">
                 Требуется для входа в личный кабинет.
             </div>
@@ -60,7 +61,8 @@
                 </span>
                 Повторите пароль
             </label>
-            <input class="rfield registration-text-input" type="password" name="rePassword" autocomplete="off">
+            <input class="rfield registration-text-input" type="password" name="rePassword"
+                   autocomplete="off" id="rePassword">
             <div class="registration-placeholder">
                 Требуется, что бы проверить что вы не ошиблись при вводе пароля.
             </div>
@@ -79,7 +81,7 @@
                 Имя
             </label>
             <input class="registration-text-input" type="text" name="name" value="{{ old('name') }}"
-                   autocomplete="off" id="name">
+                   autocomplete="off" id="firstname">
             <div class="registration-placeholder">
                 Представьтесь, что бы участники сообщества, знали как к вам обращаться.
             </div>
@@ -119,7 +121,7 @@
                 Опыт игры
             </label>
             <select id="experience" name="experience" size="2">
-                <option>-</option>
+                <option value="" selected disabled hidden>...</option>
                 @foreach($experiences as $experience)
                     <option value="{{$experience->id}}">{{$experience->label}}</option>
                 @endforeach
@@ -142,7 +144,7 @@
                 Любимая профессия
             </label>
             <select id="profession" name="professionId" size="2">
-                <option>-</option>
+                <option value="" selected disabled hidden>...</option>
                 @foreach($professions as $profession)
                     <option value="{{$profession->id}}">{{$profession->label}}</option>
                 @endforeach
@@ -165,7 +167,7 @@
                 Любимый город
             </label>
             <select id="town" name="townId" size="2">
-                <option>-</option>
+                <option value="" selected disabled hidden>...</option>
                 @foreach($towns as $town)
                     <option value="{{$town->id}}">{{$town->label}}</option>
                 @endforeach
@@ -188,7 +190,7 @@
                 Любимая локация
             </label>
             <select id="location" name="locationId" size="2">
-                <option>-</option>
+                <option value="" selected disabled hidden>...</option>
                 @foreach($locations as $location)
                     <option value="{{$location->id}}">{{$location->label}}</option>
                 @endforeach
@@ -211,7 +213,7 @@
                 Стиль игры
             </label>
             <select id="style" name="styleId" size="2">
-                <option>-</option>
+                <option value="" selected disabled hidden>...</option>
                 @foreach($styles as $style)
                     <option value="{{$style->id}}">{{$style->label}}</option>
                 @endforeach
@@ -234,7 +236,7 @@
                 PK
             </label>
             <select id="pk" name="pkId" size="2">
-                <option>-</option>
+                <option value="" selected disabled hidden>...</option>
                 @foreach($pks as $pk)
                     <option value="{{$pk->id}}">{{$pk->label}}</option>
                 @endforeach
@@ -257,7 +259,7 @@
                 Великая олимпиада
             </label>
             <select id="olympiad" name="olympiadId">
-                <option>-</option>
+                <option value="" selected disabled hidden>...</option>
                 @foreach($olympiads as $olympiad)
                     <option value="{{$olympiad->id}}">{{$olympiad->label}}</option>
                 @endforeach
@@ -280,7 +282,7 @@
                 Командный игрок
             </label>
             <select id="command" name="commandId">
-                <option>-</option>
+                <option value="" selected disabled hidden>...</option>
                 @foreach($commands as $command)
                     <option value="{{$command->id}}">{{$command->label}}</option>
                 @endforeach
