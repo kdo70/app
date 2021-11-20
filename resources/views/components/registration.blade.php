@@ -1,4 +1,4 @@
-<form method="POST" class="registration-form" action={{route('index')}}>
+<form method="POST" class="registration-form" action={{route('api.auth.registration')}}>
     @csrf
     <div class="registration-form-left">
         <div class="registration-input">

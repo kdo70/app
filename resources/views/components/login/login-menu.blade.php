@@ -1,27 +1,27 @@
 <div class="login-menu">
     <ul>
         <li>
-            <a href="{{route('template.registration')}}" id="registration" data-modal>
+            <a href="{{route('web.template.registration')}}" id="registration" data-modal>
                 Register account
             </a>
         </li>
         <li>
-            <a href="{{route('template.restore')}}" id="restore" data-modal>
+            <a href="{{route('web.template.restore')}}" id="restore" data-modal>
                 Restore account
             </a>
         </li>
         <li>
-            <a href="{{route('template.verification')}}" id="verification" data-modal>
+            <a href="{{route('web.template.verification')}}" id="verification" data-modal>
                 Verification
             </a>
         </li>
         <li>
-            <a href="{{route('template.developers')}}" id="developers" data-modal>
+            <a href="{{route('web.template.developers')}}" id="developers" data-modal>
                 Developers
             </a>
         </li>
         <li>
-            <a href="{{route('template.records')}}" id="records" data-modal>
+            <a href="{{route('web.template.records')}}" id="records" data-modal>
                 Event records
             </a>
         </li>

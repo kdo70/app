@@ -1,5 +1,5 @@
 <div class="login">
-    <form method="POST" class="login-form" action="{{ route('login') }}">
+    <form method="POST" class="login-form" action="{{ route('web.login') }}">
         @csrf
         <div class="login-input">
             <label for="login">ID</label>
@@ -13,7 +13,7 @@
             <button class="login-button" type="submit">
                 Log in
             </button>
-            <button class="login-button" type="reset" onclick="location.href='{{route('index')}}';">
+            <button class="login-button" type="reset" onclick="location.href='{{route('web.index')}}';">
                 Exit
             </button>
         </div>

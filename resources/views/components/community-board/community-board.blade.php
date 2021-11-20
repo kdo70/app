@@ -3,12 +3,12 @@
     <a class="close" href=""></a>
     <a class="hide" href=""></a>
     <div id="tabs">
-        <a class="manage" id="manage" href="{{ route('manage') }}">Manage</a>
+        <a class="manage" id="manage" href="{{ route('web.manage') }}">Manage</a>
         <x-community-board-menu/>
         <div class="tabs-items">
             <div class="tabs-item">
-                <div class="{{request()->route()->getName()}}-left"></div>
-                <div class="{{request()->route()->getName()}}-right"></div>
+                <div class="{{request()->route()->getAction('name')}}-left"></div>
+                <div class="{{request()->route()->getAction('name')}}-right"></div>
                 <div class="content">
                     @yield('content')
                 </div>

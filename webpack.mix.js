@@ -11,5 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.postCss('resources/css/all.min.css', 'public/css')
-    .postCss('resources/css/orion.css', 'public/css');
+mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer'),
+]);
