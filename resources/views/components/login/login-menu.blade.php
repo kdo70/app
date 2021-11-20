@@ -61,7 +61,7 @@
             $(username).inputmask("*{3,20}", {"clearIncomplete": true});
             $(firstname).inputmask("Aa{1,20}", {"clearIncomplete": true});
             $(password).inputmask("*{4,20}", {"clearIncomplete": true});
-            $(rePassword).inputmask("*{4,20}", {"clearIncomplete": true});
+            $(password_confirmation).inputmask("*{4,20}", {"clearIncomplete": true});
 
             $('select').each(function () {
                 var $this = $(this), numberOfOptions = $(this).children('option').length;

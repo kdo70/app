@@ -7,48 +7,35 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rules\Password;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
+    public function rules()
     {
-        return view('auth.register');
+        return [
+            'email' => ['required', 'string', 'email', 'max:255', 'min:5', 'unique:users'],
+            'username' => ['required', 'string', 'alpha_dash', 'max:255', 'min:5', 'unique:users'],
+            'password' => ['required', 'confirmed', Password::defaults()],
+            'name' => ['required', 'string'],
+            'birthday' => ['required', 'date'],
+            'experience' => ['required', 'string'],
+            'professionId' => ['required', 'string'],
+            'townId' => ['required', 'string'],
+            'locationId' => ['required', 'string'],
+            'styleId' => ['required', 'string'],
+            'pkId' => ['required', 'string'],
+            'olympiadId' => ['required', 'string'],
+            'commandId' => ['required', 'string'],
+        ];
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
+        $data = $this->validate($request, $this->rules());
+        $user = User::create($data);
         event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        return ['success' => true];
     }
 }

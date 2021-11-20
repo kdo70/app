@@ -61,8 +61,8 @@
                 </span>
                 Повторите пароль
             </label>
-            <input class="rfield registration-text-input" type="password" name="rePassword"
-                   autocomplete="off" id="rePassword">
+            <input class="rfield registration-text-input" type="password" name="password_confirmation"
+                   autocomplete="off" id="password_confirmation">
             <div class="registration-placeholder">
                 Требуется, что бы проверить что вы не ошиблись при вводе пароля.
             </div>
