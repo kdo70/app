@@ -14,9 +14,8 @@
             <input class="rfield registration-text-input" type="text" name="email" value="{{ old('email') }}"
                    autocomplete="off" id="email">
             <div class="registration-placeholder">
-                Мы не будем отправлять вам рассылку без вашего согласия,
-                почта нужна, что бы восстановить доступ к аккаунту, вводите настоящий E-mail,
-                на него будет отправлено письмо с инструкцией по активации.
+                Мы не будем отправлять вам рассылку, без вашего согласия.
+                Почта нужна для того, что бы активировать аккаунт и иметь возможность восстановить доступ.
             </div>
         </div>
         <div class="registration-input">
@@ -127,7 +126,7 @@
                 @endforeach
             </select>
             <div class="registration-placeholder">
-                Вы опытный игрок, или совсем новичок?
+                Вы новичок или опытный игрок?
             </div>
         </div>
         <div class="registration-input">
@@ -242,7 +241,7 @@
                 @endforeach
             </select>
             <div class="registration-placeholder">
-                Убиваете ли вы игроков в PK?
+                Убиваете ли вы соперников в PK?
             </div>
         </div>
         <div class="registration-input">
@@ -288,7 +287,7 @@
                 @endforeach
             </select>
             <div class="registration-placeholder">
-                Предпочитаете играть один или играете в команде?
+                Предпочитаете играть один или в команде?
             </div>
         </div>
     </div>

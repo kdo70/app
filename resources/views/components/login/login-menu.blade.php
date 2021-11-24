@@ -58,10 +58,10 @@
 
             $(email).inputmask("*{1,50}[.*{1,50}][.*{1,50}]@*{1,50}.*{1,20}[.*{1,20}][.*{1,20}]",
                 {"clearIncomplete": true});
-            $(username).inputmask("*{3,20}", {"clearIncomplete": true});
+            $(username).inputmask("*{5,20}", {"clearIncomplete": true});
             $(firstname).inputmask("Aa{1,20}", {"clearIncomplete": true});
-            $(password).inputmask("*{4,20}", {"clearIncomplete": true});
-            $(password_confirmation).inputmask("*{4,20}", {"clearIncomplete": true});
+            $(password).inputmask("*{8,20}", {"clearIncomplete": true});
+            $(password_confirmation).inputmask("*{8,20}", {"clearIncomplete": true});
 
             $('select').each(function () {
                 var $this = $(this), numberOfOptions = $(this).children('option').length;
@@ -173,8 +173,8 @@
                             type: form.attr('method'),
                             url: form.attr('action'),
                             data: form.serialize()
-                        }).done(function () {
-                            console.log('success');
+                        }).done(function (e) {
+                            console.log(e);
                         }).fail(function () {
                             console.log('fail');
                         });

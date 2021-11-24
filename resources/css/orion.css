@@ -766,7 +766,7 @@ input {
 }
 
 .registration-form {
-    margin: 8px 10px 5px;
+    margin: 10px 10px 5px;
 }
 
 .registration-form-left {
@@ -799,7 +799,7 @@ input {
     background-color: rgba(0, 0, 0, 0.5);
     padding: 2px 5px 2px 5px;
     border-left: 1px solid rgba(132, 121, 99, 0.5);
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 }
 
 .registration-placeholder {
