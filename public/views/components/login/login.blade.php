@@ -1,15 +1,8 @@
-<div class="warning" style="display: none;">
-    <div class="warning-ico"></div>
-    <div class="warning-content">
-    </div>
-    <div class="warning-control">
-        <a class="modal-cancel-button" id="warning_close">
-            Close
-        </a>
-    </div>
+<div class="warning">
+    test
 </div>
 
-
+{{--
 <div class="login">
     <form method="POST" class="login-form" action="{{ route('web.login') }}">
         @csrf
@@ -31,4 +24,4 @@
         </div>
     </form>
 </div>
-
+--}}

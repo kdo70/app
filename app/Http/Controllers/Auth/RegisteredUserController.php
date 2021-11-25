@@ -35,6 +35,9 @@ class RegisteredUserController extends Controller
         $data = $this->validate($request, $this->rules());
         $user = User::create($data);
         event(new Registered($user));
-        return ['success' => true];
+        return [
+            'success' => true,
+            'message' => 'The account has been successfully registered, an email with activation instructions has been sent to your email.'
+        ];
     }
 }
