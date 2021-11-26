@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('auth')->name('.auth')->group(function () {
-
-    Route::post('/registration', [RegisteredUserController::class, 'store'])
+    Route::post('/registration', [RegistrationController::class, 'store'])
         ->name('.registration');
 
 });

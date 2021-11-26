@@ -29,39 +29,38 @@
 </div>
 @push('scripts')
     <script type="text/javascript">
+
         $('a[data-modal]').click(function () {
-
-            $('.login').hide();
-            $('.login-menu').hide();
-
+            hideLoginElement();
             $(this).modal({
                 modalClass: $(this).attr('id'),
                 showClose: false,
-                spinnerHtml: '<div class="preload-modal">' +
-                    '<img src="img/cb/step.png" width="50" height="50" alt="Lineage 2 oath of blood preloader">' +
-                    '</div>',
-                showSpinner: true,
+                showSpinner: false,
                 fadeDuration: null,
                 fadeDelay: 1.0
             });
-
             return false;
         });
 
-        $(registration).on($.modal.AJAX_COMPLETE, function () {
-            $(birthday).inputmask({
-                alias: "datetime", inputFormat: "dd-mm-yyyy",
-                min: '01/01/1960',
-                max: '01/01/2015',
-                "clearIncomplete": true
-            });
+        function hideLoginElement() {
+            $('.login').hide();
+            $('.login-menu').hide();
+        }
 
-            $(email).inputmask("*{1,50}[.*{1,50}][.*{1,50}]@*{1,50}.*{1,20}[.*{1,20}][.*{1,20}]",
-                {"clearIncomplete": true});
-            $(username).inputmask("*{5,20}", {"clearIncomplete": true});
-            $(firstname).inputmask("Aa{1,20}", {"clearIncomplete": true});
-            $(password).inputmask("*{8,20}", {"clearIncomplete": true});
-            $(password_confirmation).inputmask("*{8,20}", {"clearIncomplete": true});
+        $(registration).on($.modal.AJAX_COMPLETE, function () {
+            /*  $(birthday).inputmask({
+                  alias: "datetime", inputFormat: "dd-mm-yyyy",
+                  min: '01/01/1960',
+                  max: '01/01/2015',
+                  "clearIncomplete": true
+              });
+
+              $(email).inputmask("*{1,50}[.*{1,50}][.*{1,50}]@*{1,50}.*{1,20}[.*{1,20}][.*{1,20}]",
+                  {"clearIncomplete": true});
+              $(username).inputmask("*{5,20}", {"clearIncomplete": true});
+              $(firstname).inputmask("Aa{1,20}", {"clearIncomplete": true});
+              $(password).inputmask("*{8,20}", {"clearIncomplete": true});
+              $(password_confirmation).inputmask("*{8,20}", {"clearIncomplete": true});*/
 
             $('select').each(function () {
                 var $this = $(this), numberOfOptions = $(this).children('option').length;
@@ -172,22 +171,19 @@
                             type: form.attr('method'),
                             url: form.attr('action'),
                             data: form.serialize()
-                        }).done(function (e) {
-                            var modal =  $(".warning-content");
-                            modal.empty();
-                            modal.append('<div class="message">' + e.message + '</div>');
-                            $('.login').show();
-                            $('.login-menu').show();
-                            $('.warning').show();
-                        }).fail(function (data) {
-                            $(".warning-content").empty();
-                            var response = data.responseJSON;
-                            $.each(response.errors, function (index, value) {
-                                if (value.length != 0) {
-                                    $(".warning-content").append('<div class="error">' + value + '</div>');
-                                }
+                        }).done(function (response) {
+                            $(response.modal).appendTo('body').modal({
+                                modalClass: 'warning',
+                                showClose: false,
+                                showSpinner: false
                             });
-                            $('.warning').show();
+                        }).fail(function (response) {
+                            $(response.responseJSON.modal).appendTo('body').modal({
+                                modalClass: 'warning',
+                                showClose: false,
+                                showSpinner: false,
+                                closeExisting: false
+                            });
                         });
                     }
                 });
@@ -197,19 +193,25 @@
             });
         });
         $(function () {
-            $(document).on($.modal.CLOSE, function () {
-                $('.login').show();
-                $('.login-menu').show();
+            $(document).on($.modal.CLOSE, function (e) {
+                var arr = ['registration'];
+                console.log(e.target.className)
+                if (arr.includes(e.target.className)) {
+                    $('.login').show();
+                    $('.login-menu').show();
+                }
             });
         });
+        $(document).on({
 
-
-        $(restore).on($.modal.AJAX_COMPLETE, function () {
-        });
-
-
-        $(warning_close).click(function () {
-            $('.warning').hide();
+            ajaxStart: function () {
+                $("body").append('<div class="preload_modal">' +
+                    '<img src="img/cb/step.png" width="50" height="50" alt="Lineage 2 oath of blood preloader">' +
+                    '</div>');
+            },
+            ajaxStop: function () {
+                $(".preload_modal").remove();
+            }
         });
     </script>
 @endpush

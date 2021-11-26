@@ -11,8 +11,8 @@
                 </span>
                 Электронная почта
             </label>
-            <input class="rfield registration-text-input" type="text" name="email" value="{{ old('email') }}"
-                   autocomplete="off" id="email">
+            <input class="rfield registration-text-input" type="text" name="email" {{--value="{{ old('email') }}"--}}
+                   autocomplete="off" id="email" value="test@gmail.com">
             <div class="registration-placeholder">
                 Мы не будем отправлять вам рассылку, без вашего согласия.
                 Почта нужна для того, что бы активировать аккаунт и иметь возможность восстановить доступ.
@@ -28,8 +28,8 @@
                 </span>
                 Имя пользователя
             </label>
-            <input class="rfield registration-text-input" type="text" name="username" value="{{ old('username') }}"
-                   autocomplete="off" id="username">
+            <input class="rfield registration-text-input" type="text" name="username" {{--value="{{ old('username') }}"--}}
+                   autocomplete="off" id="username" value="testtesttest">
             <div class="registration-placeholder">
                 Будет использовано для идентификации пользователя, при входе в личный кабинет.
             </div>
@@ -45,7 +45,7 @@
                 Пароль
             </label>
             <input class="rfield registration-text-input" type="password" name="password"
-                   autocomplete="off" id="password">
+                   autocomplete="off" id="password" value="testtesttest">
             <div class="registration-placeholder">
                 Требуется для входа в личный кабинет.
             </div>
@@ -61,7 +61,7 @@
                 Повторите пароль
             </label>
             <input class="rfield registration-text-input" type="password" name="password_confirmation"
-                   autocomplete="off" id="password_confirmation">
+                   autocomplete="off" id="password_confirmation" value="testtesttest">
             <div class="registration-placeholder">
                 Требуется, что бы проверить что вы не ошиблись при вводе пароля.
             </div>

@@ -16,5 +16,7 @@ return [
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'success' => 'The account has been successfully registered, activation instructions have been sent to your email.',
+    'fail' => 'An error occurred while submitting the form, please try again later.'
 
 ];

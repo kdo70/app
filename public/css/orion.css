@@ -942,7 +942,7 @@ input {
     margin-right: 124px;
 }
 
-.preload-modal {
+.preload_modal {
     width: 50px;
     height: 50px;
     position: absolute;
@@ -951,6 +951,7 @@ input {
     bottom: 0;
     left: 0;
     margin: auto;
+    z-index: 9999;
 }
 
 @keyframes spin {
@@ -962,7 +963,7 @@ input {
     }
 }
 
-.preload-modal img {
+.preload_modal img {
     animation: spin 5s linear 0s infinite;
 }
 
@@ -972,10 +973,10 @@ input {
     width: 256px;
     height: 108px;
     position: absolute;
-    top: 0;
+    top: 17px;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: 16px;
     margin: auto;
     z-index: 2;
 }
@@ -989,15 +990,14 @@ input {
     margin-top: 10px;
     text-decoration: none;
     position: relative;
-    display: inline-block;
 }
 
 .warning-content {
-    margin-top: -34px;
+    margin-top: -28px;
     margin-left: 42px;
     text-align: left;
     height: 70px;
-    width: 210px;
+    width: 212px;
     overflow: hidden;
 }
 

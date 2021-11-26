@@ -1,17 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Requests;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
+use App\View\Components\WarningModal;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\ValidationException;
 
-class RegisteredUserController extends Controller
+class RegistrationRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return true;
+    }
+
     public function rules()
     {
+        User::query()->delete();
         return [
             'email' => ['required', 'string', 'email:rfc,dns', 'min:5', 'max:255', 'unique:users'],
             'username' => ['required', 'string', 'alpha_dash', 'max:255', 'min:5', 'unique:users'],
@@ -29,15 +37,17 @@ class RegisteredUserController extends Controller
         ];
     }
 
-    public function store(Request $request)
+    protected function failedValidation(Validator $validator)
     {
-        User::query()->where('email', '=', $request->get('email'))->delete();
-        $data = $this->validate($request, $this->rules());
-        $user = User::create($data);
-        event(new Registered($user));
-        return [
-            'success' => true,
-            'message' => 'The account has been successfully registered, an email with activation instructions has been sent to your email.'
-        ];
+        $view = app(
+            WarningModal::class,
+            ['messages' => $validator->errors()->toArray()]
+        )->render();
+
+        $response = new JsonResponse([
+            'modal' => $view->render(),
+        ], 422);
+
+        throw new ValidationException($validator, $response);
     }
 }
