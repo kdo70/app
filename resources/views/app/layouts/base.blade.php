@@ -35,5 +35,6 @@
         console.log('%c Lineage 2 Chronicle 5: Oath of Blood ', 'background: #101934; color: #E2DAC2;');
     }
 </script>
+<script src="js/app.js"></script>
 </body>
 </html>

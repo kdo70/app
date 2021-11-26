@@ -16,6 +16,7 @@ use App\Http\Controllers\Auth\RegistrationController;
 
 
 Route::prefix('auth')->name('.auth')->group(function () {
+
     Route::post('/registration', [RegistrationController::class, 'store'])
         ->name('.registration');
 
