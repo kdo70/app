@@ -136,7 +136,7 @@ function select() {
 
         var $list = $('<ul/>', {
             'class': 'select-options',
-            'style': 'height: 200px;overflow: auto;'
+            'style': 'height: 162px;overflow: auto;'
         }).insertAfter($styledSelect);
 
         for (var i = 0; i < numberOfOptions; i++) {
