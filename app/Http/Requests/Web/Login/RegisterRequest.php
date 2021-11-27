@@ -4,13 +4,13 @@ namespace App\Http\Requests\Web\Login;
 
 use App\Models\User;
 use App\View\Components\WarningModal;
+use Exception;
 use Illuminate\Auth\Events\Lockout;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
@@ -59,6 +59,8 @@ class RegisterRequest extends FormRequest
      */
     protected function failedValidation(Validator $validator)
     {
+        $this->ensureIsNotRateLimited();
+
         $view = app(
             WarningModal::class,
             ['messages' => $validator->errors()->toArray()]
@@ -68,27 +70,38 @@ class RegisterRequest extends FormRequest
             'modal' => $view->render(),
         ], 422);
 
+        RateLimiter::hit($this->throttleKey());
+
         throw new ValidationException($validator, $response);
     }
 
     /**
-     * Авторизация пользователя.
-     * @return void
+     * Зарегистрировать пользователя.
+     * @return mixed
      * @throws ValidationException
      */
-    public function authenticate()
+    public function register()
     {
         $this->ensureIsNotRateLimited();
 
-        if (!Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        try {
+            $user = User::create($this->validated());
+            event(new Registered($user));
 
-            throw ValidationException::withMessages([
-                'username' => __('auth.failed'),
-            ]);
+            $message = 'auth.success';
+        } catch (Exception $e) {
+
+            RateLimiter::hit($this->throttleKey());
+            $message = 'auth.fail';
         }
 
+        $result = app(
+            WarningModal::class,
+            ['messages' => __($message)]
+        )->render();
+
         RateLimiter::clear($this->throttleKey());
+        return $result;
     }
 
     /**
@@ -106,12 +119,22 @@ class RegisterRequest extends FormRequest
 
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
-        throw ValidationException::withMessages([
-            'username' => trans('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ]),
-        ]);
+        $view = app(WarningModal::class,
+            [
+                'messages' => trans('auth.throttle',
+                    [
+                        'seconds' => $seconds,
+                        'minutes' => ceil($seconds / 60),
+                    ]
+                )
+            ]
+        )->render();
+
+        $response = new JsonResponse([
+            'modal' => $view->render(),
+        ], 422);
+
+        throw new ValidationException($this->validator, $response);
     }
 
     /**
@@ -120,6 +143,6 @@ class RegisterRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::lower($this->input('username')) . '|' . $this->ip();
+        return $this->ip();
     }
 }

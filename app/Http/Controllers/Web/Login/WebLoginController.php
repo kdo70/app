@@ -6,10 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Login\AuthenticationRequest;
 use App\Http\Requests\Web\Login\EmailVerificationRequest;
 use App\Http\Requests\Web\Login\RegisterRequest;
-use App\Models\User;
-use App\View\Components\WarningModal;
-use Exception;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -46,23 +42,11 @@ class WebLoginController extends Controller
      * Зарегистрировать пользователя.
      * @param RegisterRequest $request Запрос.
      * @return array
+     * @throws ValidationException
      */
     public function register(RegisterRequest $request): array
     {
-        try {
-            $user = User::create($request->validated());
-
-            event(new Registered($user));
-
-            $message = 'auth.success';
-        } catch (Exception $e) {
-            $message = 'auth.fail';
-        }
-        $view = app(
-            WarningModal::class,
-            ['messages' => __($message)]
-        )->render();
-        return ['modal' => $view->render()];
+        return ['modal' => $request->register()->render()];
     }
 
     /**
