@@ -17,6 +17,7 @@ return [
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'success' => 'The account has been successfully registered, activation instructions have been sent to your email.',
-    'fail' => 'An error occurred while submitting the form, please try again later.'
+    'fail' => 'An error occurred while submitting the form, please try again later.',
+    'verify' => 'The account has not been verified.',
 
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Web\Login;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -60,6 +61,15 @@ class AuthenticationRequest extends FormRequest
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
+
+        $user = User::query()->where('username', '=', $this->only('username'))
+            ->whereNotNull('email_verified_at')->exists();
+
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'username' => __('auth.verify'),
+            ]);
+        }
 
         if (!Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
