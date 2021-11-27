@@ -15,6 +15,23 @@ body {
     top: 0;
     left: 0;
     overflow: hidden;
+    cursor: url(../img/cursor/cursor_2.png), auto;
+}
+
+button {
+    cursor: url(../img/cursor/cursor_1.png), auto;
+}
+
+a {
+    cursor: url(../img/cursor/cursor_1.png), auto;
+}
+
+input {
+    cursor: url(../img/cursor/cursor_6.png), auto;
+}
+
+.disabled {
+    cursor: url(../img/cursor/cursor_9.png), auto;
 }
 
 @font-face {
