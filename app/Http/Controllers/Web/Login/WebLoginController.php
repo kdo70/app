@@ -10,7 +10,9 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 /**
@@ -60,5 +62,18 @@ class WebLoginController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
         return ['uri' => route('web.manage')];
+    }
+
+    /**
+     * Разорвать сессию пользователя.
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect(route('web.manage'));
     }
 }

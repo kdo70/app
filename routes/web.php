@@ -64,6 +64,7 @@ Route::prefix('login')->middleware(['guest'])->name('.login')->group(function ()
 
 
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/manage', function () {
         return view('app.views.manage.index');
     })->name('.manage');
