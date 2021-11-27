@@ -61,17 +61,10 @@ class RegisterRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $view = app(
-            WarningModal::class,
-            ['messages' => $validator->errors()->toArray()]
-        )->render();
-
-        $response = new JsonResponse([
-            'modal' => $view->render(),
-        ], 422);
+        $view = app(WarningModal::class, ['messages' => $validator->errors()->toArray()])->render();
+        $response = new JsonResponse(['modal' => $view->render()], 422);
 
         RateLimiter::hit($this->throttleKey());
-
         throw new ValidationException($validator, $response);
     }
 
@@ -95,17 +88,14 @@ class RegisterRequest extends FormRequest
             $message = 'auth.fail';
         }
 
-        $result = app(
-            WarningModal::class,
-            ['messages' => __($message)]
-        )->render();
-
+        $result = app(WarningModal::class, ['messages' => __($message)])->render();
         RateLimiter::clear($this->throttleKey());
+
         return $result;
     }
 
     /**
-     * Проверка запроса на количество попыток.
+     * Проверка лимита неудачных попыток.
      * @return void
      * @throws ValidationException
      */
@@ -119,26 +109,18 @@ class RegisterRequest extends FormRequest
 
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
-        $view = app(WarningModal::class,
-            [
-                'messages' => trans('auth.throttle',
-                    [
-                        'seconds' => $seconds,
-                        'minutes' => ceil($seconds / 60),
-                    ]
-                )
-            ]
-        )->render();
+        $view = app(WarningModal::class, [
+            'messages' => trans('auth.throttle', [
+                'seconds' => $seconds,
+                'minutes' => ceil($seconds / 60),
+            ])])->render();
 
-        $response = new JsonResponse([
-            'modal' => $view->render(),
-        ], 422);
-
+        $response = new JsonResponse(['modal' => $view->render()], 422);
         throw new ValidationException($this->validator, $response);
     }
 
     /**
-     * Ключ ограничения количества попыток.
+     * Идентификатор неудачных попыток.
      * @return string
      */
     public function throttleKey(): string

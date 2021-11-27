@@ -88,10 +88,9 @@ class EmailVerificationRequest extends FormRequest
     public function withValidator($validator)
     {
         return $validator;
+
+        parent::ensureIsNotRateLimited();
     }
 
-    protected function failedAuthorization()
-    {
-        parent::failedAuthorization();
-    }
+
 }

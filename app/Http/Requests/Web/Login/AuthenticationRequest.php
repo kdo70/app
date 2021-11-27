@@ -63,12 +63,10 @@ class AuthenticationRequest extends FormRequest
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
-
         $this->checkIsVerify();
 
         if (!Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
-
             throw ValidationException::withMessages(['username' => __('auth.failed')]);
         }
 
@@ -76,7 +74,7 @@ class AuthenticationRequest extends FormRequest
     }
 
     /**
-     * Проверка запроса на количество попыток.
+     * Проверка лимита неудачных попыток.
      * @return void
      * @throws ValidationException
      */
@@ -99,7 +97,7 @@ class AuthenticationRequest extends FormRequest
     }
 
     /**
-     * Ключ ограничения количества попыток.
+     * Идентификатор неудачных попыток.
      * @return string
      */
     public function throttleKey(): string
