@@ -16,12 +16,12 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
 /**
- * Web запрос аутентификации пользователя.
+ * Web: запрос аутентификации пользователя.
  */
 class AuthenticationRequest extends FormRequest
 {
     /**
-     * Проверка доступности исполнения запроса.
+     * Проверка доступа.
      * @return bool
      */
     public function authorize(): bool
@@ -43,7 +43,7 @@ class AuthenticationRequest extends FormRequest
 
     /**
      * Обработчик ошибок валидации.
-     * @param Validator $validator Validator.
+     * @param Validator $validator
      * @throws ValidationException
      */
     protected function failedValidation(Validator $validator)
@@ -109,12 +109,13 @@ class AuthenticationRequest extends FormRequest
 
     /**
      * Получить модель пользователя.
-     * @return Builder|Model|object|null
+     * @param string|null $guard
+     * @return Builder|Model|object
      * @throws ValidationException
      */
-    public function getUser()
+    public function user($guard = null)
     {
-        $user =  User::query()->where('username', '=', $this->only('username'))
+        $user = User::query()->where('username', '=', $this->only('username'))
             ->whereNotNull('email_verified_at')->first();
 
         if (empty($user)) {
@@ -131,7 +132,7 @@ class AuthenticationRequest extends FormRequest
      */
     public function checkIsVerify()
     {
-        if (empty($this->getUser()->email_verified_at)) {
+        if (empty($this->user()->email_verified_at)) {
             RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages(['username' => __('auth.verify')]);
         }

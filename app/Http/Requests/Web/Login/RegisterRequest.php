@@ -15,12 +15,12 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
 /**
- * Web запрос регистрации пользователя.
+ * Web: запрос регистрации пользователя.
  */
 class RegisterRequest extends FormRequest
 {
     /**
-     * Проверка доступности исполнения запроса.
+     * Проверка доступа.
      * @return bool
      */
     public function authorize()
@@ -54,7 +54,7 @@ class RegisterRequest extends FormRequest
 
     /**
      * Обработчик ошибок валидации.
-     * @param Validator $validator Validator.
+     * @param Validator $validator
      * @throws ValidationException
      */
     protected function failedValidation(Validator $validator)

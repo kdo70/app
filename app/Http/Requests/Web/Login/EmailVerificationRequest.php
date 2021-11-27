@@ -7,6 +7,7 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Validator;
 
 class EmailVerificationRequest extends FormRequest
@@ -75,6 +76,7 @@ class EmailVerificationRequest extends FormRequest
 
             event(new Verified($this->user()));
         }
+        Auth::login($this->user());
     }
 
     /**

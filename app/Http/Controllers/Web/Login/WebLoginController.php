@@ -35,7 +35,7 @@ class WebLoginController extends Controller
     public function verify(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        return redirect('/home');
+        return redirect(route('web.manage'));
     }
 
     /**
