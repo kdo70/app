@@ -81,10 +81,8 @@ class RegisterRequest extends FormRequest
         try {
             $user = User::create($this->validated());
             event(new Registered($user));
-
             $message = 'auth.success';
         } catch (Exception $e) {
-
             event(new FailRegistered());
             RateLimiter::hit($this->throttleKey());
             $message = 'auth.fail';

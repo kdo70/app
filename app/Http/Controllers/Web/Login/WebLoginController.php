@@ -28,17 +28,6 @@ class WebLoginController extends Controller
     }
 
     /**
-     * Произвести верификацию email.
-     * @param EmailVerificationRequest $request Запрос.
-     * @return Application|RedirectResponse|Redirector
-     */
-    public function verify(EmailVerificationRequest $request)
-    {
-        $request->fulfill();
-        return redirect(route('web.manage'));
-    }
-
-    /**
      * Зарегистрировать пользователя.
      * @param RegisterRequest $request Запрос.
      * @return array
@@ -47,6 +36,17 @@ class WebLoginController extends Controller
     public function register(RegisterRequest $request): array
     {
         return ['modal' => $request->register()->render()];
+    }
+
+    /**
+     * Произвести верификацию email.
+     * @param EmailVerificationRequest $request Запрос.
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function verify(EmailVerificationRequest $request)
+    {
+        $request->fulfill();
+        return redirect(route('web.manage'));
     }
 
     /**

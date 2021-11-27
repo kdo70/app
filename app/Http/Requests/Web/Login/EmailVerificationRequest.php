@@ -8,16 +8,17 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Validator;
 
+/**
+ * Web: запрос верификации пользователя.
+ */
 class EmailVerificationRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
+     * Проверка доступа.
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         if (!$this->user()) {
             return false;
@@ -37,9 +38,21 @@ class EmailVerificationRequest extends FormRequest
     }
 
     /**
-     * Определить инициатора запроса.
-     * @param string|null $guard
-     * @return false|Builder|Model|object|null
+     * Правила валидации запроса.
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'expires' => ['required', 'string', 'max:255', 'min:5'],
+            'signature' => ['required', 'string', 'max:255', 'min:5'],
+        ];
+    }
+
+    /**
+     * Получить модель пользователя.
+     * @param null $guard
+     * @return Builder|false|Model|object|null
      */
     public function user($guard = null)
     {
@@ -53,20 +66,7 @@ class EmailVerificationRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            //   'id' => ['required', 'exists:user'],
-        ];
-    }
-
-    /**
-     * Fulfill the email verification request.
-     *
+     * Верифицировать пользователя.
      * @return void
      */
     public function fulfill()
@@ -75,22 +75,7 @@ class EmailVerificationRequest extends FormRequest
             $this->user()->markEmailAsVerified();
 
             event(new Verified($this->user()));
+            Auth::login($this->user());
         }
-        Auth::login($this->user());
     }
-
-    /**
-     * Configure the validator instance.
-     *
-     * @param Validator $validator
-     * @return void
-     */
-    public function withValidator($validator)
-    {
-        return $validator;
-
-        parent::ensureIsNotRateLimited();
-    }
-
-
 }
