@@ -5,6 +5,8 @@ namespace App\Http\Requests\Web\Login;
 use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -62,21 +64,12 @@ class AuthenticationRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $user = User::query()->where('username', '=', $this->only('username'))
-            ->whereNotNull('email_verified_at')->exists();
-
-        if (!$user) {
-            throw ValidationException::withMessages([
-                'username' => __('auth.verify'),
-            ]);
-        }
+        $this->checkIsVerify();
 
         if (!Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
-            throw ValidationException::withMessages([
-                'username' => __('auth.failed'),
-            ]);
+            throw ValidationException::withMessages(['username' => __('auth.failed')]);
         }
 
         RateLimiter::clear($this->throttleKey());
@@ -112,5 +105,35 @@ class AuthenticationRequest extends FormRequest
     public function throttleKey(): string
     {
         return Str::lower($this->input('username')) . '|' . $this->ip();
+    }
+
+    /**
+     * Получить модель пользователя.
+     * @return Builder|Model|object|null
+     * @throws ValidationException
+     */
+    public function getUser()
+    {
+        $user =  User::query()->where('username', '=', $this->only('username'))
+            ->whereNotNull('email_verified_at')->first();
+
+        if (empty($user)) {
+            RateLimiter::hit($this->throttleKey());
+            throw ValidationException::withMessages(['username' => __('auth.failed')]);
+        }
+
+        return $user;
+    }
+
+    /**
+     * Проверить верифицирован ли пользователь.
+     * @throws ValidationException
+     */
+    public function checkIsVerify()
+    {
+        if (empty($this->getUser()->email_verified_at)) {
+            RateLimiter::hit($this->throttleKey());
+            throw ValidationException::withMessages(['username' => __('auth.verify')]);
+        }
     }
 }
