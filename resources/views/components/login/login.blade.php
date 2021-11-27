@@ -12,7 +12,7 @@
                    autocomplete="off">
         </div>
         <div class="login-control">
-            <button class="btn_submit disabled login-button" id="authentication" type="submit">
+            <button class="btn_submit login-button" id="authentication" type="submit">
                 Log in
             </button>
             <button class="login-button" type="reset" onclick="location.href='{{route('web.index')}}';">
