@@ -1,4 +1,13 @@
 /**
+ * Добавляем csrf token для ajax запросов.
+ */
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+/**
  * Вызов модельного окна.
  * Любая ссылка с атрибутом "data-modal", будет вызывать модельное окно.
  * Ожидается, что в качестве идентификатора ссылки, указан класс модального окна.
@@ -21,7 +30,7 @@ $('a[data-modal]').click(function () {
 /**
  * Модальное окно: форма регистрации.
  */
-$(registration).on($.modal.AJAX_COMPLETE, function () {
+$('#registration').on($.modal.AJAX_COMPLETE, function () {
 
     $(birthday).inputmask({
         alias: "datetime", inputFormat: "dd-mm-yyyy", min: '01/01/1960', max: '01/01/2015', "clearIncomplete": true
@@ -51,10 +60,11 @@ $(registration).on($.modal.AJAX_COMPLETE, function () {
  * Custom validator.
  */
 function validator(selector) {
+
     var form = $(selector);
+
     form.each(function () {
-            var form = $(this),
-                btn = form.find('.btn_submit');
+            var form = $(this), btn = form.find('.btn_submit');
             form.find('.rfield').addClass('empty_field');
 
             function checkInput() {
@@ -113,11 +123,14 @@ function validator(selector) {
                     });
                 }
             });
+
         }
     );
+
     form.submit(function (e) {
         e.preventDefault();
     });
+
 }
 
 /**
@@ -174,6 +187,7 @@ function select() {
             $styledSelect.removeClass('active');
             $list.hide();
         });
+
     });
 }
 
@@ -197,23 +211,76 @@ function showLoginElement() {
  * Обработчик закрытия, модального окна.
  */
 $(function () {
+
     $(document).on($.modal.CLOSE, function (e) {
         var login = ['registration'];
+
         if (login.includes(e.target.className)) {
             showLoginElement();
         }
+
     });
+
 });
 
 /**
  * Отображение preloader, при ajax запросах.
  */
 $(document).on({
-    ajaxStart: function () {
+    ajaxStart: function (e) {
+        var target = ['authentication'];
+
+        if (target.includes(e.currentTarget.activeElement.id)) {
+            return false;
+        }
         var html = '<div class="preload_modal"><img src="img/cb/step.png" width="50" height="50" alt="Pointer"></div>';
         $("body").append(html);
+
     },
     ajaxStop: function () {
         $(".preload_modal").remove();
     }
 });
+
+/**
+ * Отправка формы авторизации.
+ */
+$(function () {
+    var login_form = $(".login-form");
+
+    login_form.submit(function (e) {
+
+        e.preventDefault();
+
+        $.ajax({
+            type: login_form.attr('method'),
+            url: login_form.attr('action'),
+            data: login_form.serialize(),
+        }).done(function (response) {
+            var uri = response.uri;
+            if (uri) {
+                window.location = response.uri;
+            } else {
+                showFooterMessage('Unfortunately, an error has occurred, please contact technical support');
+            }
+        }).fail(function (response) {
+            var errors = Object.values(response.responseJSON.errors);
+            if (errors.length) {
+                showFooterMessage(Object.values(response.responseJSON.errors)[0][0]);
+            } else {
+                showFooterMessage('Unfortunately, an error has occurred, please contact technical support');
+            }
+        });
+
+    });
+
+});
+
+/**
+ * Показать сообщение в футере.
+ */
+function showFooterMessage(message) {
+    var footer = $('.login-footer-text');
+    footer.empty();
+    footer.append(message);
+}

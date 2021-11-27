@@ -1,21 +1,9 @@
 <?php
 
 use App\Http\Controllers\StorageController;
-use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Web\Login\WebLoginController;
 use App\View\Components\Registration;
+use Illuminate\Support\Facades\Route;
 
 Route::group(['name' => 'index'], function () {
     Route::get('/', function () {
@@ -58,13 +46,21 @@ Route::group(['name' => 'forums'], function () {
     })->name('.forums');
 });
 
-Route::get('/login', function () {
-    return view('app.views.login.index');
-})->name('.login');
+Route::prefix('login')->middleware(['guest'])->name('.login')->group(function () {
 
-Route::post('/login', [
-    LoginController::class, 'authenticate'
-])->name('.login');
+    Route::get('/', [WebLoginController::class, 'show'])
+        ->name('.show');
+
+    Route::get('/verify/{id}/{hash}', [WebLoginController::class, 'verify'])
+        ->name('.verify');
+
+    Route::post('/register', [WebLoginController::class, 'register'])
+        ->name('.register');
+
+    Route::post('/authentication', [WebLoginController::class, 'authentication'])
+        ->name('.authentication');
+
+});
 
 
 Route::middleware(['auth'])->group(function () {
@@ -102,4 +98,3 @@ Route::prefix('template')->name('.template')->group(function () {
     })->name('.records');
 
 });
-

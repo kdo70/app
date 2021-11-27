@@ -23,6 +23,7 @@
     {{-- script:end --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 @yield('body')
