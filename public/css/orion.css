@@ -72,6 +72,7 @@ a {
     text-decoration: none;
     position: relative;
     display: inline-block;
+    cursor: url(../img/cursor/cursor_4.png), auto;
 }
 
 .pc-tooltip:hover {
@@ -826,10 +827,12 @@ input {
 }
 
 .registration-plus {
+    cursor: url(../img/cursor/cursor_4.png), auto;
     color: #A3DC96;
 }
 
 .registration-required {
+    cursor: url(../img/cursor/cursor_4.png), auto;
     color: #FFFC00;
 }
 
