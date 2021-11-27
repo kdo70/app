@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Web\Login;
 
+use App\Events\FailRegistered;
 use App\Models\User;
 use App\View\Components\WarningModal;
 use Exception;
@@ -84,6 +85,7 @@ class RegisterRequest extends FormRequest
             $message = 'auth.success';
         } catch (Exception $e) {
 
+            event(new FailRegistered());
             RateLimiter::hit($this->throttleKey());
             $message = 'auth.fail';
         }
