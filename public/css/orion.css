@@ -1007,3 +1007,20 @@ input {
     top: 80px;
     left: 80px;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    background-color: rgba(32, 32, 32, 0.6);
+    border: 1px solid rgba(57, 56, 57, 1);
+    outline: none !important;
+    -webkit-text-fill-color: #E2DAC2;
+    -webkit-box-shadow: 0 0 0 1000px #000 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
