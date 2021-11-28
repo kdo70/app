@@ -56,6 +56,14 @@ $('#registration').on($.modal.AJAX_COMPLETE, function () {
     validator('.registration-form');
 });
 
+$('#verification').on($.modal.AJAX_COMPLETE, function () {
+    $(email).inputmask("*{1,50}[.*{1,50}][.*{1,50}]@*{1,50}.*{1,20}[.*{1,20}][.*{1,20}]", {
+        "clearIncomplete": true
+    });
+
+    validator('.verification_form');
+});
+
 /**
  * Custom validator.
  */
@@ -213,7 +221,7 @@ function showLoginElement() {
 $(function () {
 
     $(document).on($.modal.CLOSE, function (e) {
-        var login = ['registration'];
+        var login = ['registration', 'verification'];
 
         if (login.includes(e.target.className)) {
             showLoginElement();
