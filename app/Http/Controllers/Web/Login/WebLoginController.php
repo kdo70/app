@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Login\AuthenticationRequest;
 use App\Http\Requests\Web\Login\EmailVerificationRequest;
 use App\Http\Requests\Web\Login\RegisterRequest;
+use App\View\Components\WarningModal;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -37,7 +38,13 @@ class WebLoginController extends Controller
      */
     public function register(RegisterRequest $request): array
     {
-        return ['modal' => $request->register()->render()];
+        $request->fulfill();
+
+        $response = app(WarningModal::class, [
+            'messages' => __('auth.success')
+            ])->render();
+
+        return ['modal' => $response->render()];
     }
 
     /**

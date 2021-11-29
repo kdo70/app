@@ -75,6 +75,7 @@ class EmailVerificationRequest extends FormRequest
             $this->user()->markEmailAsVerified();
 
             event(new Verified($this->user()));
+
             Auth::login($this->user());
         }
     }

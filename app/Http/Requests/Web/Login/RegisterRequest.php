@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests\Web\Login;
 
-use App\Events\FailRegistered;
 use App\Models\User;
 use App\View\Components\WarningModal;
-use Exception;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Validation\Validator;
@@ -62,7 +60,9 @@ class RegisterRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $view = app(WarningModal::class, ['messages' => $validator->errors()->toArray()])->render();
+        $view = app(WarningModal::class, [
+            'messages' => $validator->errors()->toArray()
+        ])->render();
         $response = new JsonResponse(['modal' => $view->render()], 422);
 
         RateLimiter::hit($this->throttleKey());
@@ -71,27 +71,17 @@ class RegisterRequest extends FormRequest
 
     /**
      * Зарегистрировать пользователя.
-     * @return mixed
+     * @return void
      * @throws ValidationException
      */
-    public function register()
+    public function fulfill()
     {
         $this->ensureIsNotRateLimited();
 
-        try {
-            $user = User::create($this->validated());
-            event(new Registered($user));
-            $message = 'auth.success';
-        } catch (Exception $e) {
-            event(new FailRegistered());
-            RateLimiter::hit($this->throttleKey());
-            $message = 'auth.fail';
-        }
+        $user = User::create($this->validated());
+        event(new Registered($user));
 
-        $result = app(WarningModal::class, ['messages' => __($message)])->render();
         RateLimiter::clear($this->throttleKey());
-
-        return $result;
     }
 
     /**
@@ -108,12 +98,12 @@ class RegisterRequest extends FormRequest
         event(new Lockout($this));
 
         $seconds = RateLimiter::availableIn($this->throttleKey());
-
         $view = app(WarningModal::class, [
             'messages' => trans('auth.throttle', [
                 'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ])])->render();
+                'minutes' => ceil($seconds / 60)
+            ])
+        ])->render();
 
         $response = new JsonResponse(['modal' => $view->render()], 422);
         throw new ValidationException($this->validator, $response);
