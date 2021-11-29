@@ -14,7 +14,7 @@ use Illuminate\Validation\ValidationException;
 /**
  * Web: запрос регистрации пользователя.
  */
-class RegisterRequest extends FormRequest
+class RegistrationRequest extends FormRequest
 {
     /**
      * Проверка доступа.

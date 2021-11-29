@@ -5,8 +5,6 @@ namespace App\Http\Requests\Web\Login;
 use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -49,21 +47,21 @@ class AuthenticationRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         $response = new JsonResponse([
-            'errors' => $validator->errors()->toArray(),
+            'errors' => $validator->errors()->toArray()
         ], 422);
 
         throw new ValidationException($validator, $response);
     }
 
     /**
-     * Авторизация пользователя.
+     * Аутентификация пользователя.
      * @return void
      * @throws ValidationException
      */
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
-        $this->checkIsVerify();
+        $this->isVerified();
 
         if (!Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
@@ -74,7 +72,23 @@ class AuthenticationRequest extends FormRequest
     }
 
     /**
-     * Проверка лимита неудачных попыток.
+     * Проверить, верифицирована ли учетная запись.
+     * @return void
+     * @throws ValidationException
+     */
+    public function isVerified()
+    {
+        $isVerified = User::query()->where('username', '=', $this->only('username'))
+            ->whereNotNull('email_verified_at')->exists();
+
+        if (!$isVerified) {
+            RateLimiter::hit($this->throttleKey());
+            throw ValidationException::withMessages(['username' => __('auth.verify')]);
+        }
+    }
+
+    /**
+     * Проверка ограничения неудачных попыток.
      * @return void
      * @throws ValidationException
      */
@@ -87,17 +101,16 @@ class AuthenticationRequest extends FormRequest
         event(new Lockout($this));
 
         $seconds = RateLimiter::availableIn($this->throttleKey());
-
         throw ValidationException::withMessages([
             'username' => trans('auth.throttle', [
                 'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ]),
+                'minutes' => ceil($seconds / 60)
+            ])
         ]);
     }
 
     /**
-     * Идентификатор неудачных попыток.
+     * Идентификатор ограничения попыток.
      * @return string
      */
     public function throttleKey(): string
@@ -106,33 +119,12 @@ class AuthenticationRequest extends FormRequest
     }
 
     /**
-     * Получить модель пользователя.
-     * @param string|null $guard
-     * @return Builder|Model|object
+     * Выполнить аутентификацию пользователя.
      * @throws ValidationException
      */
-    public function user($guard = null)
+    public function fulfill()
     {
-        $user = User::query()->where('username', '=', $this->only('username'))
-            ->whereNotNull('email_verified_at')->first();
-
-        if (empty($user)) {
-            RateLimiter::hit($this->throttleKey());
-            throw ValidationException::withMessages(['username' => __('auth.failed')]);
-        }
-
-        return $user;
-    }
-
-    /**
-     * Проверить верифицирован ли пользователь.
-     * @throws ValidationException
-     */
-    public function checkIsVerify()
-    {
-        if (empty($this->user()->email_verified_at)) {
-            RateLimiter::hit($this->throttleKey());
-            throw ValidationException::withMessages(['username' => __('auth.verify')]);
-        }
+        $this->authenticate();
+        $this->session()->regenerate();
     }
 }

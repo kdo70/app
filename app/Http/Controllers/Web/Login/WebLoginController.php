@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\Login;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Login\AuthenticationRequest;
-use App\Http\Requests\Web\Login\RegisterRequest;
+use App\Http\Requests\Web\Login\RegistrationRequest;
 use App\Http\Requests\Web\Login\VerificationRequest;
 use App\View\Components\WarningModal;
 use Illuminate\Contracts\Foundation\Application;
@@ -32,23 +32,23 @@ class WebLoginController extends Controller
 
     /**
      * Зарегистрировать пользователя.
-     * @param RegisterRequest $request Запрос.
+     * @param RegistrationRequest $request Request.
      * @return array
      */
-    public function register(RegisterRequest $request): array
+    public function register(RegistrationRequest $request): array
     {
         $request->fulfill();
 
         $response = app(WarningModal::class, [
             'messages' => __('auth.success')
-            ])->render();
+        ])->render();
 
         return ['modal' => $response->render()];
     }
 
     /**
      * Произвести верификацию email.
-     * @param VerificationRequest $request Запрос.
+     * @param VerificationRequest $request Request.
      * @return Application|RedirectResponse|Redirector
      */
     public function verification(VerificationRequest $request)
@@ -60,14 +60,14 @@ class WebLoginController extends Controller
 
     /**
      * Авторизовать пользователя.
-     * @param AuthenticationRequest $request Запрос.
+     * @param AuthenticationRequest $request Request.
      * @return array
      * @throws ValidationException
      */
     public function authentication(AuthenticationRequest $request): array
     {
-        $request->authenticate();
-        $request->session()->regenerate();
+        $request->fulfill();
+
         return ['uri' => route('web.manage')];
     }
 
