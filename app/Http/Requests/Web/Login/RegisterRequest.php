@@ -4,12 +4,10 @@ namespace App\Http\Requests\Web\Login;
 
 use App\Models\User;
 use App\View\Components\WarningModal;
-use Illuminate\Auth\Events\Lockout;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
@@ -58,63 +56,21 @@ class RegisterRequest extends FormRequest
      */
     protected function failedValidation(Validator $validator)
     {
-        $this->ensureIsNotRateLimited();
-
         $view = app(WarningModal::class, [
             'messages' => $validator->errors()->toArray()
         ])->render();
         $response = new JsonResponse(['modal' => $view->render()], 422);
 
-        RateLimiter::hit($this->throttleKey());
         throw new ValidationException($validator, $response);
     }
 
     /**
      * Зарегистрировать пользователя.
      * @return void
-     * @throws ValidationException
      */
     public function fulfill()
     {
-        $this->ensureIsNotRateLimited();
-
         $user = User::create($this->validated());
         event(new Registered($user));
-
-        RateLimiter::clear($this->throttleKey());
-    }
-
-    /**
-     * Проверка лимита неудачных попыток.
-     * @return void
-     * @throws ValidationException
-     */
-    public function ensureIsNotRateLimited()
-    {
-        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
-            return;
-        }
-
-        event(new Lockout($this));
-
-        $seconds = RateLimiter::availableIn($this->throttleKey());
-        $view = app(WarningModal::class, [
-            'messages' => trans('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60)
-            ])
-        ])->render();
-
-        $response = new JsonResponse(['modal' => $view->render()], 422);
-        throw new ValidationException($this->validator, $response);
-    }
-
-    /**
-     * Идентификатор неудачных попыток.
-     * @return string
-     */
-    public function throttleKey(): string
-    {
-        return $this->ip();
     }
 }

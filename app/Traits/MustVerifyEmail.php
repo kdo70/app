@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 
-use App\Notifications\VerifyEmail;
+use App\Notifications\VerificationNotification;
 
 trait MustVerifyEmail
 {
@@ -36,7 +36,7 @@ trait MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyEmail);
+        $this->notify(new VerificationNotification);
     }
 
     /**

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 /**
  * Web: запрос верификации пользователя.
  */
-class EmailVerificationRequest extends FormRequest
+class VerificationRequest extends FormRequest
 {
     /**
      * Проверка доступа.
@@ -24,13 +24,11 @@ class EmailVerificationRequest extends FormRequest
             return false;
         }
 
-        if (!hash_equals((string)$this->route('id'),
-            (string)$this->user()->getKey())) {
+        if (!hash_equals((string)$this->route('id'), (string)$this->user()->getKey())) {
             return false;
         }
 
-        if (!hash_equals((string)$this->route('hash'),
-            sha1($this->user()->getEmailForVerification()))) {
+        if (!hash_equals((string)$this->route('hash'), sha1($this->user()->getEmailForVerification()))) {
             return false;
         }
 
@@ -43,40 +41,29 @@ class EmailVerificationRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'expires' => ['required', 'string', 'max:255', 'min:5'],
-            'signature' => ['required', 'string', 'max:255', 'min:5'],
-        ];
+        return [];
     }
 
     /**
      * Получить модель пользователя.
-     * @param null $guard
-     * @return Builder|false|Model|object|null
+     * @param null $guard Guard.
+     * @return Builder|Model|object|null
      */
     public function user($guard = null)
     {
-        $id = $this->route('id');
-
-        if (empty($id)) {
-            return false;
-        }
-
-        return User::query()->where('id', '=', $id)->first();
+        return User::query()->whereNull('email_verified_at')
+            ->where('id', '=', $this->route('id'))
+            ->first();
     }
 
     /**
      * Верифицировать пользователя.
      * @return void
      */
-    public function fulfill()
+    public function fulfill($user)
     {
-        if (!$this->user()->hasVerifiedEmail()) {
-            $this->user()->markEmailAsVerified();
-
-            event(new Verified($this->user()));
-
-            Auth::login($this->user());
-        }
+        $this->user()->markEmailAsVerified();
+        event(new Verified($user));
+        Auth::login($user);
     }
 }
