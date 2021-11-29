@@ -34,7 +34,6 @@ class WebLoginController extends Controller
      * Зарегистрировать пользователя.
      * @param RegisterRequest $request Запрос.
      * @return array
-     * @throws ValidationException
      */
     public function register(RegisterRequest $request): array
     {
