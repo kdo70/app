@@ -20,7 +20,7 @@ class RegistrationRequest extends FormRequest
      * Проверка доступа.
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -29,7 +29,7 @@ class RegistrationRequest extends FormRequest
      * Правила валидации запроса.
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         User::query()->delete(); // TODO: delete! need for test
         return [

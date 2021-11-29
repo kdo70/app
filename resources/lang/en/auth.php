@@ -19,5 +19,6 @@ return [
     'success' => 'The account has been successfully registered, activation instructions have been sent to your email.',
     'fail' => 'An error occurred while submitting the form, please try again later.',
     'verify' => 'The account has not been verified.',
+    'notification' => 'Activation instructions have been sent to your email.',
 
 ];

@@ -39,7 +39,7 @@ class VerificationRequest extends FormRequest
      * Правила валидации запроса.
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [];
     }

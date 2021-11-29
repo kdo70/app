@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Login;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Login\AuthenticationRequest;
+use App\Http\Requests\Web\Login\NotificationRequest;
 use App\Http\Requests\Web\Login\RegistrationRequest;
 use App\Http\Requests\Web\Login\VerificationRequest;
 use App\View\Components\WarningModal;
@@ -35,7 +36,7 @@ class WebLoginController extends Controller
      * @param RegistrationRequest $request Request.
      * @return array
      */
-    public function register(RegistrationRequest $request): array
+    public function registration(RegistrationRequest $request): array
     {
         $request->fulfill();
 
@@ -56,6 +57,22 @@ class WebLoginController extends Controller
         $request->fulfill($request->user());
 
         return redirect(route('web.manage'));
+    }
+
+    /**
+     * Повторно, отправить инструкцию по активации аккаунта пользователю.
+     * @param NotificationRequest $request Request.
+     * @return array
+     */
+    public function notification(NotificationRequest $request): array
+    {
+        $request->fulfill();
+
+        $response = app(WarningModal::class, [
+            'messages' => __('auth.notification')
+        ])->render();
+
+        return ['modal' => $response->render()];
     }
 
     /**

@@ -13,7 +13,7 @@
     <p class="verification_p">
         В случае, если вы по какой-то причине не получили письмо, то вы можете запросить его повторно, заполнив форму.
     </p>
-    <form method="POST" class="verification_form" action="{{ route('web.login.authentication') }}">
+    <form method="POST" class="verification_form" action="{{ route('web.login.notification') }}">
         @csrf
         <div class="verification_input">
             <label for="email">

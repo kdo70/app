@@ -31,7 +31,7 @@ class AuthenticationRequest extends FormRequest
      * Правила валидации запроса.
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'username' => ['required', 'string', 'alpha_dash', 'max:255', 'min:5', 'exists:users'],

@@ -51,13 +51,19 @@ Route::prefix('login')->middleware(['guest'])->name('.login')->group(function ()
     Route::get('/', [WebLoginController::class, 'show'])
         ->name('.show');
 
-    Route::post('/register', [WebLoginController::class, 'register'])
-        ->name('.register');
+    Route::middleware('throttle:5:1')
+        ->post('/registration', [WebLoginController::class, 'registration'])
+        ->name('.registration');
 
     Route::get('/verification/{id}/{hash}', [WebLoginController::class, 'verification'])
         ->name('.verification');
 
-    Route::post('/authentication', [WebLoginController::class, 'authentication'])
+    Route::middleware('throttle:5:1')
+        ->post('/notification', [WebLoginController::class, 'notification'])
+        ->name('.notification');
+
+    Route::middleware('throttle:5:1')
+        ->post('/authentication', [WebLoginController::class, 'authentication'])
         ->name('.authentication');
 
 });
