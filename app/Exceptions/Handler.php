@@ -35,9 +35,7 @@ class Handler extends ExceptionHandler
             $status = static::getStatus($exception);
             $redirect = static::getRedirectTo($exception);
 
-            $view = app(InformationModal::class, [
-                'messages' => $messages
-            ])->render();
+            $view = app(InformationModal::class, ['messages' => $messages])->render();
 
             $data = [
                 'html' => $view->render(),
@@ -50,7 +48,6 @@ class Handler extends ExceptionHandler
             } elseif ($redirect) {
                 return response()->redirectTo($redirect);
             }
-
             return response()->view('errors.show', $data, $status);
         });
     }
