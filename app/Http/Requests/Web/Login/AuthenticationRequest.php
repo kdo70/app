@@ -4,9 +4,7 @@ namespace App\Http\Requests\Web\Login;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
@@ -37,20 +35,6 @@ class AuthenticationRequest extends FormRequest
             'username' => ['required', 'string', 'alpha_dash', 'max:255', 'min:5', 'exists:users'],
             'password' => ['required', Password::defaults()],
         ];
-    }
-
-    /**
-     * Обработчик ошибок валидации.
-     * @param Validator $validator
-     * @throws ValidationException
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        $response = new JsonResponse([
-            'errors' => $validator->errors()->toArray()
-        ], 422);
-
-        throw new ValidationException($validator, $response);
     }
 
     /**

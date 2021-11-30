@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Web\Login;
 
 use App\Models\User;
-use App\View\Components\WarningModal;
+use App\View\Components\InformationModal;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -47,21 +47,6 @@ class RegistrationRequest extends FormRequest
             'olympiadId' => ['nullable', 'string', 'min:1', 'max:1'],
             'commandId' => ['nullable', 'string', 'min:1', 'max:1'],
         ];
-    }
-
-    /**
-     * Обработчик ошибок валидации.
-     * @param Validator $validator
-     * @throws ValidationException
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        $view = app(WarningModal::class, [
-            'messages' => $validator->errors()->toArray()
-        ])->render();
-        $response = new JsonResponse(['modal' => $view->render()], 422);
-
-        throw new ValidationException($validator, $response);
     }
 
     /**

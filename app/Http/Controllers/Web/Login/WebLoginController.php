@@ -7,10 +7,11 @@ use App\Http\Requests\Web\Login\AuthenticationRequest;
 use App\Http\Requests\Web\Login\NotificationRequest;
 use App\Http\Requests\Web\Login\RegistrationRequest;
 use App\Http\Requests\Web\Login\VerificationRequest;
-use App\View\Components\WarningModal;
+use App\View\Components\InformationModal;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -18,12 +19,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 /**
- * Web контроллер аутентификации пользователя.
+ * Web: контроллер аутентификации.
  */
 class WebLoginController extends Controller
 {
     /**
-     * Показать страницу логина.
+     * Показать страницу аутентификации
      * @return Application|Factory|View
      */
     public function show()
@@ -32,24 +33,27 @@ class WebLoginController extends Controller
     }
 
     /**
-     * Зарегистрировать пользователя.
-     * @param RegistrationRequest $request Request.
-     * @return array
+     * Зарегистрировать учетную запись
+     * @param RegistrationRequest $request
+     * @return JsonResponse
      */
-    public function registration(RegistrationRequest $request): array
+    public function registration(RegistrationRequest $request): JsonResponse
     {
         $request->fulfill();
 
-        $response = app(WarningModal::class, [
+        $response = app(InformationModal::class, [
             'messages' => __('auth.success')
         ])->render();
 
-        return ['modal' => $response->render()];
+        return response()->json([
+            'html' => $response->render(),
+            'text' => __('auth.success')
+        ]);
     }
 
     /**
-     * Произвести верификацию email.
-     * @param VerificationRequest $request Request.
+     * Верифицировать учетную запись
+     * @param VerificationRequest $request
      * @return Application|RedirectResponse|Redirector
      */
     public function verification(VerificationRequest $request)
@@ -60,32 +64,37 @@ class WebLoginController extends Controller
     }
 
     /**
-     * Повторно, отправить инструкцию по активации аккаунта пользователю.
+     * Повторно, отправить инструкцию верификации учетной записи
      * @param NotificationRequest $request Request.
-     * @return array
+     * @return JsonResponse
      */
-    public function notification(NotificationRequest $request): array
+    public function notification(NotificationRequest $request): JsonResponse
     {
         $request->fulfill();
 
-        $response = app(WarningModal::class, [
+        $response = app(InformationModal::class, [
             'messages' => __('auth.notification')
         ])->render();
 
-        return ['modal' => $response->render()];
+        return response()->json([
+            'html' => $response->render(),
+            'text' => __('auth.notification')
+        ]);
     }
 
     /**
-     * Авторизовать пользователя.
-     * @param AuthenticationRequest $request Request.
-     * @return array
+     * Аутентификация учетной записи
+     * @param AuthenticationRequest $request
+     * @return JsonResponse
      * @throws ValidationException
      */
-    public function authentication(AuthenticationRequest $request): array
+    public function authentication(AuthenticationRequest $request): JsonResponse
     {
         $request->fulfill();
 
-        return ['uri' => route('web.manage')];
+        return response()->json([
+            'uri' => route('web.manage')
+        ]);
     }
 
     /**

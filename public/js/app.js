@@ -116,13 +116,13 @@ function validator(selector) {
                         url: form.attr('action'),
                         data: form.serialize()
                     }).done(function (response) {
-                        $(response.modal).appendTo('body').modal({
+                        $(response.html).appendTo('body').modal({
                             modalClass: 'warning',
                             showClose: false,
                             showSpinner: false
                         });
                     }).fail(function (response) {
-                        $(response.responseJSON.modal).appendTo('body').modal({
+                        $(response.responseJSON.html).appendTo('body').modal({
                             modalClass: 'warning',
                             showClose: false,
                             showSpinner: false,
@@ -268,16 +268,16 @@ $(function () {
             var uri = response.uri;
             if (uri) {
                 window.location = response.uri;
-            } else {
-                showFooterMessage('Unfortunately, an error has occurred, please contact technical support');
+                return false;
             }
+            showFooterMessage('Unfortunately, an error has occurred, please contact technical support');
         }).fail(function (response) {
-            var errors = Object.values(response.responseJSON.errors);
-            if (errors.length) {
-                showFooterMessage(Object.values(response.responseJSON.errors)[0][0]);
-            } else {
-                showFooterMessage('Unfortunately, an error has occurred, please contact technical support');
+            var errors = Object.values(response.responseJSON.text);
+            if (response.responseJSON.message) {
+                showFooterMessage(errors);
+                return false;
             }
+            showFooterMessage(errors[0][0]);
         });
 
     });
