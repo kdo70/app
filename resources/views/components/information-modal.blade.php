@@ -12,7 +12,7 @@
         @endforeach
     </div>
     <div class="warning-control">
-        <a class="modal-cancel-button" id="warning_close" type="reset" rel="modal:close">
+        <a href="/" class="modal-cancel-button" id="warning_close" type="reset" rel="modal:close">
             Close
         </a>
     </div>

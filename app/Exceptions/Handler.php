@@ -20,18 +20,23 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (Exception $exception, $request) {
             $messages = static::getMessages($exception);
+            $status = $this->getStatus($exception);
 
             $view = app(InformationModal::class, [
                 'messages' => $messages
             ])->render();
 
+            $data = [
+                'html' => $view->render(),
+                'text' => $messages,
+                'message' => is_string($messages)
+            ];
+
             if ($request->ajax()) {
-                return response()->json([
-                    'html' => $view->render(),
-                    'text' => $messages,
-                    'message' => is_string($messages)
-                ], $this->getStatus($exception));
+                return response()->json($data, $status);
             }
+
+            return response()->view('errors.show', $data, $status);
         });
     }
 
