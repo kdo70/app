@@ -2,9 +2,7 @@
 
 namespace App\View\Components;
 
-use Closure;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -18,13 +16,15 @@ class InformationModal extends Component
      * @var array
      */
     protected $messages;
+    protected $link;
 
     /**
      * @param $messages
      */
-    public function __construct($messages)
+    public function __construct($messages, $link = null)
     {
         $this->messages = (array)$messages;
+        $this->link = $link;
     }
 
     /**
@@ -32,6 +32,9 @@ class InformationModal extends Component
      */
     public function render()
     {
-        return view('components.information-modal', ['messages' => $this->messages]);
+        return view('components.information-modal', [
+            'messages' => $this->messages,
+            'link' => $this->link
+        ]);
     }
 }

@@ -950,6 +950,10 @@ input {
     background-image: url(../img/cb/bigbutton_down.png);
 }
 
+.warning-control a {
+    text-decoration: none;
+}
+
 .registration-control {
     margin-top: 7px;
     float: right;

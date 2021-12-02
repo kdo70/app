@@ -23,6 +23,16 @@ class CommunityBoard extends Component
      */
     public function render()
     {
-        return view('components.community-board.community-board');
+        return view('components.community-board.community-board', [
+            'actionName' => $this->getActionName()
+        ]);
+    }
+
+    public function getActionName()
+    {
+        $route = request()->route();
+        if (!empty($route)) {
+            return $route->getActionName();
+        }
     }
 }

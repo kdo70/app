@@ -40,7 +40,8 @@ class Handler extends ExceptionHandler
             $data = [
                 'html' => $view->render(),
                 'text' => $messages,
-                'message' => is_string($messages)
+                'message' => is_string($messages),
+                'link' => route('web.index')
             ];
 
             if ($request->ajax()) {
@@ -48,7 +49,7 @@ class Handler extends ExceptionHandler
             } elseif ($redirect) {
                 return response()->redirectTo($redirect);
             }
-            return response()->view('errors.show', $data, $status);
+            return response()->view('app.views.errors.show', $data, $status);
         });
     }
 
@@ -86,6 +87,8 @@ class Handler extends ExceptionHandler
     {
         if (!method_exists($exception, 'redirectTo')) {
             return false;
+        } elseif (!empty($exception->redirectTo)) {
+            return $exception->redirectTo;
         }
         return $exception->redirectTo();
     }

@@ -7,8 +7,8 @@
         <x-community-board-menu/>
         <div class="tabs-items">
             <div class="tabs-item">
-                <div class="{{request()->route()->getAction('name')}}-left"></div>
-                <div class="{{request()->route()->getAction('name')}}-right"></div>
+                <div class="{{$actionName}}-left"></div>
+                <div class="{{$actionName}}-right"></div>
                 <div class="content">
                     @yield('content')
                 </div>
