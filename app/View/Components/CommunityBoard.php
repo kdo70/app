@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
 class CommunityBoard extends Component
@@ -32,7 +33,7 @@ class CommunityBoard extends Component
     {
         $route = request()->route();
         if (!empty($route)) {
-            return $route->getActionName();
+            return Arr::get(request()->route()->getAction(), 'name');
         }
     }
 }

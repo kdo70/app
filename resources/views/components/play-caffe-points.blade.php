@@ -4,10 +4,10 @@
     </div>
     <div class="pc-tooltip">
         <span class="pc-tooltipText">
-            The number of characters in the world in the last 24 hours
+            Number of characters online now and within 24 hours
         </span>
     </div>
     <div class="pc-online">
-        13,984
+        <?= $a = rand(1, 9999); number_format($a, 0) ?>/<?= number_format($a * 5, 0) ?>
     </div>
 </div>

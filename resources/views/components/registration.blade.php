@@ -104,6 +104,44 @@
                 Мы поздравим вас в ваш день рождения.
             </div>
         </div>
+        <div class="registration-input">
+            <label for="birthday">
+                    <span class="registration-plus">
+                        <span class="registration-plusText">
+                                <span class="registration-plus">
+                                 +5
+                                </span>
+                                Бонус за заполнение поля
+                            </span>
+                        +5
+                    </span>
+                Дата рождения
+            </label>
+            <input class="registration-text-input" type="text" name="birthday" value="{{ old('birthday') }}"
+                   autocomplete="off" id="birthday">
+            <div class="registration-placeholder">
+                Мы поздравим вас в ваш день рождения.
+            </div>
+        </div>
+        <div class="registration-input">
+            <label for="birthday">
+                    <span class="registration-plus">
+                        <span class="registration-plusText">
+                                <span class="registration-plus">
+                                 +5
+                                </span>
+                                Бонус за заполнение поля
+                            </span>
+                        +5
+                    </span>
+                Дата рождения
+            </label>
+            <input class="registration-text-input" type="text" name="birthday" value="{{ old('birthday') }}"
+                   autocomplete="off" id="birthday">
+            <div class="registration-placeholder">
+                Мы поздравим вас в ваш день рождения.
+            </div>
+        </div>
     </div>
     <div class="registration-form-right">
         <div class="registration-input">
@@ -265,6 +303,29 @@
             </select>
             <div class="registration-placeholder">
                 Участвуете ли вы в великой олимпиаде?
+            </div>
+        </div>
+        <div class="registration-input">
+            <label for="command">
+                    <span class="registration-plus">
+                        <span class="registration-plusText">
+                                <span class="registration-plus">
+                                 +1
+                                </span>
+                                Бонус за заполнение поля
+                            </span>
+                        +1
+                    </span>
+                Командный игрок
+            </label>
+            <select id="command" name="commandId">
+                <option value="" selected disabled hidden>...</option>
+                @foreach($commands as $command)
+                    <option value="{{$command->id}}">{{$command->label}}</option>
+                @endforeach
+            </select>
+            <div class="registration-placeholder">
+                Предпочитаете играть один или в команде?
             </div>
         </div>
         <div class="registration-input">
