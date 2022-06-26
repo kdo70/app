@@ -13,7 +13,7 @@ jobs:
       # Setup key328df
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
-      - run: chmod 600 "$HOME/.ssh/key"
+      - run: echo "${{ secrets.test }}" > "$HOME/.ssh/test"
+      - run: chmod 600 "$HOME/.ssh/test"
       # Deploy
       - run: cd app && rsync -e "ssh -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837.myjino.ru:/home/users/j/j01391837/domains/maphr.ru
