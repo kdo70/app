@@ -17,8 +17,17 @@ jobs:
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.test }}" > "$HOME/.ssh/test"
       - run: chmod 0600 "$HOME/.ssh/test"
+      - name: Copy .env.example to .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install composer dependencies😒😂
         run: composer install
-      - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -vvv -i $HOME/.ssh/test -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr.ru
       - name: Generate encryption key
         run: php artisan key:generate
+      - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -vvv -i $HOME/.ssh/test -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr.ru
+      - name: Run laravel database migrations
+        run: |
+            touch .env
+            echo APP_DEBUG=false >> .env
+            echo DB_USERNAME=test_username >> .env
+            echo DB_PASSWORD=${{ secrets.DEV_PASSWORD }} >> .env
+            echo "!.env" > .git-ftp-include # Add git untracked file
