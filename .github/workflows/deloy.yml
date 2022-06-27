@@ -17,8 +17,8 @@ jobs:
       - run: echo "${{ secrets.test }}" > "$HOME/.ssh/test"
       - run: chmod 0600 "$HOME/.ssh/test"
       # Deploy
-      - run: rsync -e "ssh -p 22 -vvv -i $HOME/.ssh/test -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr.ru
       - name: Copy .env.example to .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install composer dependencies
         run: composer install
+      - run: rsync -e "ssh -p 22 -vvv -i $HOME/.ssh/test -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr.ru
