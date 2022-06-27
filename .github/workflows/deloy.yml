@@ -12,16 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # Setup key328dfdfdgsgс
-      - name: Sggtart s 😒😂
       - run: curl https://api.ipify.org
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.test }}" > "$HOME/.ssh/test"
       - run: chmod 0600 "$HOME/.ssh/test"
-      # Deploy
       - name: Copy .env.example to .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install composer dependencies
-        run: composer install
+        run: composer install 😒😂
       - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -vvv -i $HOME/.ssh/test -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr.ru
