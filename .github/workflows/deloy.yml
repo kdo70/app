@@ -21,4 +21,13 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install composer dependencies😒😂
         run: composer install
+      - name: Generate encryption key
+        run: php artisan key:generate
+      - name: Run laravel database migrations
+        env:
+          DB_CONNECTION: pgsql
+          DB_PORT: 5432
+          DB_DATABASE: j01391837_maphr
+          DB_USERNAME: j01391837_maphr
+          DB_PASSWORD: GCn#8Z7vcdUa
       - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -vvv -i $HOME/.ssh/test -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr.ru
