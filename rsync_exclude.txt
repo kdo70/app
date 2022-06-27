@@ -8,6 +8,7 @@ README.md
 .gitignore
 .gitattributes
 .env.example
+.env
 .editorconfig
 .github
 .git

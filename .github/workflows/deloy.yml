@@ -17,15 +17,6 @@ jobs:
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.test }}" > "$HOME/.ssh/test"
       - run: chmod 0600 "$HOME/.ssh/test"
-      - name: Copy .env.example to .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-        env:
-          DB_CONNECTION: pgsql
-          DB_HOST: postgresql.j01391837.myjino.ru
-          DB_PORT: 5432
-          DB_DATABASE: j01391837_maphr
-          DB_USERNAME: j01391837_maphr
-          DB_PASSWORD: GCn#8Z7vcdUa
       - name: Install composer dependencies😒😂
         run: composer install
       - name: Generate encryption key
