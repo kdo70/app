@@ -32,4 +32,3 @@ jobs:
           DB_DATABASE: j01391837_maphr
           DB_USERNAME: j01391837_maphr
           DB_PASSWORD: GCn#8Z7vcdUa
-        run: php artisan migrate --force
