@@ -11,6 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # Setup key328dfdfdgsgс
+        run: curl https://api.ipify.org
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.test }}" > "$HOME/.ssh/test"
