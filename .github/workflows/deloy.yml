@@ -11,8 +11,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Start 😒😂
       - uses: actions/checkout@v2
       # Setup key328dfdfdgsgс
+      - name: Start s 😒😂
       - run: curl https://api.ipify.org
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
