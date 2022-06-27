@@ -24,8 +24,8 @@ jobs:
           touch .env
           echo APP_NAME=${{ secrets.APP_NAME }} >> .env
           echo APP_ENV=${GITHUB_REF#refs/heads/} >> .env
+          echo APP_KEY= >> .env
           echo DB_PASSWORD=${{ secrets.DEV_PASSWORD }} >> .env
-          echo "!.env" > .git-ftp-include # Add git untracked file
       - name: Generate encryption key
         run: php artisan key:generate
       - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -vvv -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr.ru
