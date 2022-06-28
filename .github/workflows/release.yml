@@ -1,12 +1,10 @@
 name: Release
-
 on:
   push:
     branches:
       - main
     paths-ignore:
       - 'README.md'
-
 jobs:
   Release:
     runs-on: ubuntu-latest
