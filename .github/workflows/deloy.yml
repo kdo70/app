@@ -38,5 +38,6 @@ jobs:
         run: php artisan key:generate
       - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr
       - name: Deploy to production
+      - uses: actions/checkout@v2
         with:
           script: 'cd home/users/j/j01391837/domains/maphr && ./server_deploy.sh'
