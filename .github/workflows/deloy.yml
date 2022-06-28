@@ -37,4 +37,4 @@ jobs:
         run: php artisan key:generate
       - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr
       - name: migrate
-        run: php artisan migrate
+        run: php artisan migrate:refresh --seed
