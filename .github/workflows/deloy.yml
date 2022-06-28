@@ -35,7 +35,7 @@ jobs:
       - name: Generate encryption key
         run: php artisan key:generate
       - name: Deploy
-        run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . $HOME/.ssh/MAIN_USERNAME@$HOME/.ssh/MAIN_HOST:/home/users/j/j01391837/domains/maphr
+        run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . ${{ secrets.MAIN_USERNAME }}@${{ secrets.MAIN_HOST }}:/home/users/j/j01391837/domains/maphr
       - name: Run command
         uses: appleboy/ssh-action@master
         with:
