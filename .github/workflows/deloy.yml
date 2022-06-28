@@ -37,5 +37,6 @@ jobs:
       - name: 🟢 Generate encryption key
         run: php artisan key:generate
       - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr
-      - name: 🟢 migrate
-        run: php artisan migrate
+      - name: Deploy to production
+        with:
+          script: 'cd home/users/j/j01391837/domains/maphr && ./server_deploy.sh'
