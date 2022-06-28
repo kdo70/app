@@ -44,4 +44,4 @@ jobs:
           host: maphr.ru
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          script: 'cd domains/maphr && /opt/alt/php81/usr/bin/php artisan migrate'
+          script: 'cd domains/maphr && /opt/alt/php81/usr/bin/php artisan migrate:refresh --seed'
