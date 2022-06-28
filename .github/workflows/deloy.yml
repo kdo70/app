@@ -40,7 +40,8 @@ jobs:
       - name: Deploy to production
         uses: appleboy/ssh-action@master
         with:
-          username: YOUR USERNAME GOES HERE
-          host: YOUR SERVER'S HOSTNAME GOES HERE
-          password: ${{ secrets.SSH_PASSWORD }}
+          username: j01391837
+          host: maphr.ru
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
           script: 'cd /var/www/html && ./server_deploy.sh'
