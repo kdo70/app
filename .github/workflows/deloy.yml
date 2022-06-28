@@ -1,4 +1,4 @@
-name: Deploy
+name: Release
 
 on:
   push:
@@ -12,15 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: 🟢 Determine the IP address1
-        run: curl https://api.ipify.org
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > "$HOME/.ssh/SSH_PRIVATE_KEY"
       - run: chmod 0600 "$HOME/.ssh/SSH_PRIVATE_KEY"
-      - name: 🟢 Install composer dependencies
-        run: composer install
-      - name: 🟢 Run laravel database migrations
+      - name: Install composer dependencies
+        run: composer update
+      - name: Build .env
         run: |
           touch .env
           echo APP_NAME=${{ secrets.MAIN_APP_NAME }} >> .env
@@ -34,14 +32,15 @@ jobs:
           echo DB_DATABASE=${{ secrets.MAIN_DB_DATABASE }} >> .env
           echo DB_USERNAME=${{ secrets.MAIN_DB_USERNAME }} >> .env
           echo DB_PASSWORD=${{ secrets.MAIN_DB_PASSWORD }} >> .env
-      - name: 🟢 Generate encryption key
+      - name: Generate encryption key
         run: php artisan key:generate
-      - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr
-      - name: Deploy to production
+      - name: Deploy
+        run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . $HOME/.ssh/MAIN_USERNAME@$HOME/.ssh/MAIN_HOST:/home/users/j/j01391837/domains/maphr
+      - name: Run command
         uses: appleboy/ssh-action@master
         with:
-          username: j01391837
-          host: maphr.ru
+          username: ${{ secrets.MAIN_USERNAME }}
+          host: ${{ secrets.MAIN_HOST }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: 'cd domains/maphr && /opt/alt/php81/usr/bin/php artisan migrate:refresh --seed'
+          port: ${{ secrets.MAIN_PORT }}
+          script: 'cd domains/maphr && /opt/alt/php81/usr/bin/php artisan migrate:refresh --seed && /opt/alt/php81/usr/bin/php artisan optimize:clear'
