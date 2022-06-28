@@ -32,17 +32,23 @@ jobs:
           echo DB_DATABASE=${{ secrets.MAIN_DB_DATABASE }} >> .env
           echo DB_USERNAME=${{ secrets.MAIN_DB_USERNAME }} >> .env
           echo DB_PASSWORD=${{ secrets.MAIN_DB_PASSWORD }} >> .env
-      - name: Generate encryption key
+      - name: Command - php artisan key:generate
         run: php artisan key:generate
-      - name: Deploy
+      - name: Rsync deploy
         run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p ${{ secrets.MAIN_PORT }} -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . ${{ secrets.MAIN_USERNAME }}@${{ secrets.MAIN_HOST }}:${{ secrets.MAIN_DEPLOY_PATH }}
-      - name: Run migrate, cache clear
+      - name: Command - php artisan migrate
         uses: appleboy/ssh-action@master
         with:
           username: ${{ secrets.MAIN_USERNAME }}
           host: ${{ secrets.MAIN_HOST }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.MAIN_PORT }}
-          script: "cd ${{ secrets.MAIN_SCRIPT_PATH }}
-          && ${{ secrets.MAIN_PHP_PATH }} artisan migrate:refresh --seed
-          && ${{ secrets.MAIN_PHP_PATH }} artisan optimize:clear"
+          script: "cd ${{ secrets.MAIN_SCRIPT_PATH }} && ${{ secrets.MAIN_PHP_PATH }} artisan migrate:refresh --seed"
+      - name: Command - php artisan optimize:clear
+        uses: appleboy/ssh-action@master
+        with:
+          username: ${{ secrets.MAIN_USERNAME }}
+          host: ${{ secrets.MAIN_HOST }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.MAIN_PORT }}
+          script: "cd ${{ secrets.MAIN_SCRIPT_PATH }} && ${{ secrets.MAIN_PHP_PATH }} artisan optimize:clear"
