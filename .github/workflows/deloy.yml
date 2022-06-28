@@ -44,4 +44,4 @@ jobs:
           host: maphr.ru
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          script: 'cd /var/www/html && ./server_deploy.sh'
+          script: 'cd /home/users/j/j01391837/domains/maphr && ./server_deploy.sh'
