@@ -12,12 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: curl https://api.ipify.org
+      - name: Determine the IP address
+        run: curl https://api.ipify.org
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > "$HOME/.ssh/SSH_PRIVATE_KEY"
       - run: chmod 0600 "$HOME/.ssh/SSH_PRIVATE_KEY"
-      - name: Install composer dependencies😒😂
+      - name: Install composer dependencies
         run: composer install
       - name: Run laravel database migrations
         run: |
@@ -37,4 +38,4 @@ jobs:
         run: php artisan key:generate
       - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr
       - name: migrate
-        run: php artisan migrate:refresh --seed
+        run: php artisan migrate
