@@ -35,7 +35,10 @@ jobs:
       - name: Generate encryption key
         run: php artisan key:generate
       - name: Deploy
-        run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . ${{ secrets.MAIN_USERNAME }}@${{ secrets.MAIN_HOST }}:/home/users/j/j01391837/domains/maphr
+        run: rsync --exclude-from=rsync_exclude.txt --del
+        -e "ssh -p ${{ secrets.MAIN_PORT }} -i $HOME/.ssh/SSH_PRIVATE_KEY
+        -o StrictHostKeyChecking=no" --archive --compress --delete
+        . ${{ secrets.MAIN_USERNAME }}@${{ secrets.MAIN_HOST }}:${{ secrets.MAIN_DEPLOY_PATH }}
       - name: Run command
         uses: appleboy/ssh-action@master
         with:
@@ -43,4 +46,6 @@ jobs:
           host: ${{ secrets.MAIN_HOST }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.MAIN_PORT }}
-          script: 'cd domains/maphr && /opt/alt/php81/usr/bin/php artisan migrate:refresh --seed && /opt/alt/php81/usr/bin/php artisan optimize:clear'
+          script: "cd domains/maphr
+          && ${{ secrets.MAIN_PHP_PATH }} artisan migrate:refresh --seed
+          && ${{ secrets.MAIN_PHP_PATH }} artisan optimize:clear"
