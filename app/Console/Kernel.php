@@ -5,12 +5,12 @@ namespace App\Console;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 /**
- * Базовый класс конфигурации консоли приложения.
+ * Базовый класс конфигурации консоли приложения
  */
 class Kernel extends ConsoleKernel
 {
     /**
-     * Регистрация команд приложения.
+     * Регистрация команд приложения
      * @return void
      */
     protected function commands()

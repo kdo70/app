@@ -2,12 +2,12 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
 
 /**
- * Событие: ошибка регистрации.
+ * Событие: ошибка регистрации
  */
 class FailRegistered
 {

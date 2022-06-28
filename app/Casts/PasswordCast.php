@@ -2,17 +2,17 @@
 
 namespace App\Casts;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 /**
- * Типизатор: пароль.
+ * Типизатор: пароль
  */
 class PasswordCast implements CastsAttributes
 {
     /**
-     * Получить хэш пароля.
+     * Получить хэш пароля
      * @param Model $model
      * @param string $key
      * @param mixed $value
@@ -25,7 +25,7 @@ class PasswordCast implements CastsAttributes
     }
 
     /**
-     * Указать хэш пароля.
+     * Указать хэш пароля
      * @param Model $model
      * @param string $key
      * @param mixed $value
