@@ -1,13 +1,13 @@
-webpack.mix.js
-server.php
-phpunit.xml
-package.json
-package-lock.json
-README.md
-.styleci.yml
-.gitignore
-.gitattributes
-.env.example
-.editorconfig
-.github
-.git
+- webpack.mix.js
+- server.php
+- phpunit.xml
+- package.json
+- package-lock.json
+- README.md
+- .styleci.yml
+- .gitignore
+- .gitattributes
+- .env.example
+- .editorconfig
+- .github
+- .git
