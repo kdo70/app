@@ -38,7 +38,6 @@ jobs:
         run: php artisan key:generate
       - run: rsync --exclude-from=rsync_exclude.txt --del -e "ssh -p 22 -i $HOME/.ssh/SSH_PRIVATE_KEY -o StrictHostKeyChecking=no" --archive --compress --delete . j01391837@maphr.ru:/home/users/j/j01391837/domains/maphr
       - name: Deploy to production
-        uses: appleboy/ssh-action@master
         with:
           username: j01391837
           host: maphr.ru
