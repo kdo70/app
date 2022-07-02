@@ -15,6 +15,8 @@ jobs:
       - run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > "$HOME/.ssh/SSH_PRIVATE_KEY"
       - run: chmod 0600 "$HOME/.ssh/SSH_PRIVATE_KEY"
       - name: Install composer dependencies
+        run: composer install
+      - name: Update composer dependencies
         run: composer update
       - name: Build .env
         run: |
