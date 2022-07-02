@@ -98,7 +98,10 @@ a {
     color: #fff;
     text-align: center;
     border-radius: 1px;
-    padding: 5px 0;
+    padding: 2px;
+
+    outline: 1px solid rgba(102, 98, 101, 1);
+    outline-offset: -2px;
 
     font-size: 12px;
     position: absolute;
@@ -522,14 +525,22 @@ a {
 }
 
 .event-footer {
+    display: block;
     margin-top: -5px;
     border-top: 1px solid rgba(181, 174, 140, 0.2);
     padding-top: 5px;
     font-size: 12px;
 }
+.event-counter {
+    margin-top: 3px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
 
 .event-author {
-    display: inline-block;
+    margin-bottom: -21px;
 }
 
 .event-author a {
@@ -537,30 +548,24 @@ a {
     text-decoration: none;
 }
 
-.event-view {
-    margin-left: 208px;
+.event-counter-item {
     display: inline-block;
     color: #B09979;
-}
-
-.event-comments {
-    margin-left: 10px;
-    display: inline-block;
-    color: #B09979;
-}
-
-.event-more {
-    float: right;
-    display: inline-block;
-    margin-top: 2.5px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .event-more-btn {
+    float: right;
+    display: block;
     background-image: url(../img/cb/smallbutton2.png);
     background-repeat: no-repeat;
     text-decoration: none;
     text-align: center;
-    padding: 4px 21px 15px 21px;
+    padding-top: 3px;
+    width: 80px;
+    height: 25px;
+    margin-top: -18px;
 }
 
 .event-more-btn:hover {
@@ -569,74 +574,6 @@ a {
 
 .event-more-btn:active {
     background-image: url(../img/cb/smallbutton2-down.png);
-}
-
-
-.pagination-block {
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.pagination {
-    display: inline-block;
-}
-
-.pagination-prev {
-    background-image: url(../img/cb/shortcut_prev.png);
-    float: left;
-    text-decoration: none;
-    margin: 0 1px;
-    width: 18px;
-    height: 18px;
-}
-
-.pagination-prev:hover {
-    background-image: url(../img/cb/shortcut_prev_over.png);
-}
-
-.pagination-prev:active {
-    background-image: url(../img/cb/shortcut_prev_down.png);
-}
-
-.pagination-page {
-    background-image: url(../img/cb/shortcut_num.png);
-    float: left;
-    text-decoration: none;
-    margin: 0 1px;
-    width: 18px;
-    height: 18px;
-    line-height: 1.45;
-    font-size: 9pt;
-}
-
-.pagination-page:hover {
-    background-image: url(../img/cb/shortcut_num_over.png);
-}
-
-.pagination-page:active {
-    background-image: url(../img/cb/shortcut_num_down.png);
-}
-
-.pagination-page.active {
-    background-image: url(../img/cb/shortcut_num_down.png);
-}
-
-.pagination-next {
-    background-image: url(../img/cb/shortcut_next.png);
-    float: left;
-    text-decoration: none;
-    margin: 0 1px;
-    width: 18px;
-    height: 18px;
-}
-
-.pagination-next:hover {
-    background-image: url(../img/cb/shortcut_next_over.png);
-}
-
-.pagination-next:active {
-    background-image: url(../img/cb/shortcut_next_down.png);
 }
 
 
@@ -749,6 +686,7 @@ input {
     right: 22px;
     bottom: 100px;
 }
+
 .login-menu ul {
     margin-top: 15px;
 }
@@ -822,18 +760,28 @@ input {
     width: 150px;
     height: 17px;
     float: right;
+    font-size: 12px;
+    color: #B09979;
 }
 
 .registration-text-input:focus {
     background-color: rgba(32, 32, 32, 0.6);
     border: 1px solid rgba(57, 56, 57, 1);
     outline: none !important;
+    font-size: 12px;
+    color: #B09979;
+}
+
+.registration-text-input::placeholder {
+    font-size: 12px;
+    color: #E2DAC2;
+    padding: 2px;
 }
 
 .registration-input {
     float: right;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 2px 5px 2px 5px;
+    padding: 1px 5px 1px 5px;
     border-left: 1px solid rgba(132, 121, 99, 0.5);
     margin-bottom: 6px;
 }
@@ -857,14 +805,14 @@ input {
 
 .registration-required .registration-requiredText {
     visibility: hidden;
-    width: 100px;
+    width: 135px;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     text-align: center;
     border-radius: 1px;
-    padding: 2px 0;
+    padding: 1px;
     margin-top: -3px;
-    margin-left: -107px;
+    margin-left: -142px;
     position: absolute;
     z-index: 1;
 }
@@ -875,14 +823,14 @@ input {
 
 .registration-plus .registration-plusText {
     visibility: hidden;
-    width: 155px;
+    width: 215px;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     text-align: center;
     border-radius: 1px;
     padding: 2px 0;
     margin-top: -3px;
-    margin-left: -167px;
+    margin-left: -223px;
     position: absolute;
     z-index: 1;
 }
@@ -931,7 +879,7 @@ input {
     position: absolute;
     top: 100%;
     right: 0;
-    width: 150px;
+    width: 155px;
     left: 0;
     z-index: 999;
     margin: 0;
@@ -944,6 +892,7 @@ input {
     padding-left: 5px;
     border: 1px solid #393839;
     background-color: #101010;
+    font-size: 12px;
 }
 
 .select-options li:hover {
@@ -979,9 +928,9 @@ input {
 }
 
 .registration-control {
-    margin-top: 2px;
+    margin-top: 4px;
     float: right;
-    margin-right: 171px;
+    margin-right: 159px;
 }
 
 .preload_modal {
@@ -1154,4 +1103,169 @@ select:-webkit-autofill:focus {
 
 .medium_button:active {
     background-image: url(../img/cb/medium_btn_down.png);
+}
+
+/* Пагинация */
+ul.pagination {
+    color: #B09979;
+    text-align: center;
+    margin-right: 5px;
+    padding: 10px 10px 10px 10px;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+ul.pagination li {
+    display: inline;
+    margin-right: 5px;
+    padding: 3px;
+    text-decoration: none;
+}
+
+ul.pagination li a {
+    color: #B09979;
+    text-decoration: none;
+}
+
+.pagination-active {
+    color: #c2bcab;
+}
+
+.pagination-prev {
+    background-image: url(../img/cb/shortcut_prev.png);
+    float: left;
+    text-decoration: none;
+    margin: 0 1px;
+    width: 18px;
+    height: 18px;
+}
+
+.pagination-prev:hover {
+    background-image: url(../img/cb/shortcut_prev_over.png);
+}
+
+.pagination-prev:active {
+    background-image: url(../img/cb/shortcut_prev_down.png);
+}
+
+.pagination-page {
+    background-image: url(../img/cb/shortcut_num.png);
+    float: left;
+    text-decoration: none;
+    margin: 0 1px;
+    width: 18px;
+    height: 18px;
+    line-height: 1.45;
+    font-size: 9pt;
+}
+
+.pagination-page:hover {
+    background-image: url(../img/cb/shortcut_num_over.png);
+}
+
+.pagination-page:active {
+    background-image: url(../img/cb/shortcut_num_down.png);
+}
+
+.pagination-page.active {
+    background-image: url(../img/cb/shortcut_num_down.png);
+}
+
+.pagination-next {
+    background-image: url(../img/cb/shortcut_next.png);
+    float: right;
+    text-decoration: none;
+    margin: 0 1px;
+    width: 18px;
+    height: 18px;
+}
+
+.pagination-next:hover {
+    background-image: url(../img/cb/shortcut_next_over.png);
+}
+
+.pagination-next:active {
+    background-image: url(../img/cb/shortcut_next_down.png);
+}
+
+
+.comment {
+    margin-bottom: 10px;
+    margin-right: 5px;
+    padding: 10px 10px 10px 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(181, 174, 140, 0.2);
+}
+
+
+.comment-header {
+    border-bottom: 1px solid rgba(181, 174, 140, 0.2);
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.comment-title {
+    color: #B09979;
+    display: inline-block;
+}
+
+.comment-date {
+    right: 0;
+    display: inline-block;
+    float: right;
+    color: #B09979;
+    font-size: 12px;
+}
+
+.comment-item {
+    position: relative;
+    border: 1px solid rgba(181, 174, 140, 0.2);
+    padding: 5px 5px 25px 5px;
+    font-size: 12px;
+    min-height: 140px;
+    height: 100%;
+    margin-top: 10px;
+    color: #c2bcab;
+}
+
+.comment-item-author {
+    float: left;
+    width: 100px;
+    min-height: 100px;
+    padding-right: 10px;
+    text-align: center;
+    color: #B09979;
+}
+
+.comment-item-name {
+    padding-bottom: 5px;
+    color: #8ab4f8;
+}
+
+.comment-item-karma {
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.comment-item-replay {
+    display: inline-block;
+}
+
+.comment-item a {
+    color: #B09979;
+    text-decoration: none;
+}
+
+.comment-item-footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #B09979;
+    padding: 5px;
+}
+
+.comment-item-header {
+    float: right;
+    color: #B09979;
+    border-bottom: 1px solid rgba(181, 174, 140, 0.2);
 }

@@ -819,5 +819,14 @@ class FormHandBookSeeder extends Seeder
             'label' => 'Нет'
         ]);
         /*** form_command */
+
+        /*** form_genders */
+        DB::table('form_genders')->insert([
+            'label' => 'Милорд'
+        ]);
+        DB::table('form_genders')->insert([
+            'label' => 'Миледи'
+        ]);
+        /*** form_genders */
     }
 }

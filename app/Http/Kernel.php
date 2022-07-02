@@ -83,7 +83,7 @@ class Kernel extends HttpKernel
         'guest' => RedirectIfAuthenticated::class,
         'password.confirm' => RequirePassword::class,
         'signed' => ValidateSignature::class,
-        'throttle' => ThrottleRequests::class,
+      //  'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
     ];
 }

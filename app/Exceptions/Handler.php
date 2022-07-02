@@ -30,7 +30,7 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->renderable(function (Exception $exception, $request) {
+       /* $this->renderable(function (Exception $exception, $request) {
             $messages = static::getMessages($exception);
             $status = static::getStatus($exception);
             $redirect = static::getRedirectTo($exception);
@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
                 return response()->redirectTo($redirect);
             }
             return response()->view('app.views.errors.show', $data, $status);
-        });
+        });*/
     }
 
     /**

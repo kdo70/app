@@ -14,8 +14,10 @@
             <input class="rfield registration-text-input" type="text" name="email" value="{{ old('email') }}"
                    autocomplete="off" id="email">
             <div class="registration-placeholder">
+                Почта нужна для того, чтобы верифицировать учетную запись.
+                Мы отправим на нее письмо с ссылкой для подтверждения.
+                Так же почта нужна, что бы иметь возможность востановить доступ, в случае его утери.
                 Мы не будем отправлять вам рассылку, без вашего согласия.
-                Почта нужна для того, что бы активировать аккаунт и иметь возможность восстановить доступ.
             </div>
         </div>
         <div class="registration-input">
@@ -29,9 +31,8 @@
                 Имя пользователя
             </label>
             <input class="rfield registration-text-input" type="text" name="username" value="{{ old('username') }}"
-                   autocomplete="off" id="username">
+                   autocomplete="off" id="username" placeholder="Минимум 5 символов">
             <div class="registration-placeholder">
-                Будет использовано для идентификации пользователя, при входе в личный кабинет.
             </div>
         </div>
         <div class="registration-input">
@@ -45,9 +46,8 @@
                 Пароль
             </label>
             <input class="rfield registration-text-input" type="password" name="password"
-                   autocomplete="off" id="password">
+                   autocomplete="off" id="password" placeholder="Минимум 8 символов">
             <div class="registration-placeholder">
-                Требуется для входа в личный кабинет.
             </div>
         </div>
         <div class="registration-input">
@@ -61,9 +61,8 @@
                 Повторите пароль
             </label>
             <input class="rfield registration-text-input" type="password" name="password_confirmation"
-                   autocomplete="off" id="password_confirmation">
+                   autocomplete="off" id="password_confirmation" placeholder="Минимум 8 символов">
             <div class="registration-placeholder">
-                Требуется, что бы проверить что вы не ошиблись при вводе пароля.
             </div>
         </div>
         <div class="registration-input">
@@ -80,9 +79,8 @@
                 Имя
             </label>
             <input class="registration-text-input" type="text" name="name" value="{{ old('name') }}"
-                   autocomplete="off" id="firstname">
+                   autocomplete="off" id="firstname" placeholder="Минимум 3 символа">
             <div class="registration-placeholder">
-                Представьтесь, что бы участники сообщества, знали как к вам обращаться.
             </div>
         </div>
         <div class="registration-input">
@@ -99,51 +97,35 @@
                 Дата рождения
             </label>
             <input class="registration-text-input" type="text" name="birthday" value="{{ old('birthday') }}"
-                   autocomplete="off" id="birthday">
+                   autocomplete="off" id="birthday" placeholder="01.01.1980">
             <div class="registration-placeholder">
-                Мы поздравим вас в ваш день рождения.
-            </div>
-        </div>
-        <div class="registration-input">
-            <label for="birthday">
-                    <span class="registration-plus">
-                        <span class="registration-plusText">
-                                <span class="registration-plus">
-                                 +5
-                                </span>
-                                Бонус за заполнение поля
-                            </span>
-                        +5
-                    </span>
-                Дата рождения
-            </label>
-            <input class="registration-text-input" type="text" name="birthday" value="{{ old('birthday') }}"
-                   autocomplete="off" id="birthday">
-            <div class="registration-placeholder">
-                Мы поздравим вас в ваш день рождения.
-            </div>
-        </div>
-        <div class="registration-input">
-            <label for="birthday">
-                    <span class="registration-plus">
-                        <span class="registration-plusText">
-                                <span class="registration-plus">
-                                 +5
-                                </span>
-                                Бонус за заполнение поля
-                            </span>
-                        +5
-                    </span>
-                Дата рождения
-            </label>
-            <input class="registration-text-input" type="text" name="birthday" value="{{ old('birthday') }}"
-                   autocomplete="off" id="birthday">
-            <div class="registration-placeholder">
-                Мы поздравим вас в ваш день рождения.
             </div>
         </div>
     </div>
     <div class="registration-form-right">
+        <div class="registration-input">
+            <label for="experience">
+                    <span class="registration-plus">
+                        <span class="registration-plusText">
+                                <span class="registration-plus">
+                                 +3
+                                </span>
+                                Бонус за заполнение поля
+                            </span>
+                        +3
+                    </span>
+                Гендер
+            </label>
+            <select id="experience" name="experience" size="2">
+                <option value="" selected disabled hidden>...</option>
+                @foreach($genders as $gender)
+                    <option value="{{$gender->id}}">{{$gender->label}}</option>
+                @endforeach
+            </select>
+            <div class="registration-placeholder">
+                Милорд или миледи? Мы хотим, знать больше о нашей аудитории, для подсчета статистики.
+            </div>
+        </div>
         <div class="registration-input">
             <label for="experience">
                     <span class="registration-plus">
@@ -233,7 +215,7 @@
                 @endforeach
             </select>
             <div class="registration-placeholder">
-                Какая из локаций наиболее атмосферная Execution Grounds или Antharas' Lair?
+                Какая из локаций наиболее атмосферная Execution Grounds или Antharas' Lair, или другая?
             </div>
         </div>
         <div class="registration-input">
@@ -303,29 +285,6 @@
             </select>
             <div class="registration-placeholder">
                 Участвуете ли вы в великой олимпиаде?
-            </div>
-        </div>
-        <div class="registration-input">
-            <label for="command">
-                    <span class="registration-plus">
-                        <span class="registration-plusText">
-                                <span class="registration-plus">
-                                 +1
-                                </span>
-                                Бонус за заполнение поля
-                            </span>
-                        +1
-                    </span>
-                Командный игрок
-            </label>
-            <select id="command" name="commandId">
-                <option value="" selected disabled hidden>...</option>
-                @foreach($commands as $command)
-                    <option value="{{$command->id}}">{{$command->label}}</option>
-                @endforeach
-            </select>
-            <div class="registration-placeholder">
-                Предпочитаете играть один или в команде?
             </div>
         </div>
         <div class="registration-input">

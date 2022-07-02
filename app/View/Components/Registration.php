@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use App\Models\form\FormCommand;
 use App\Models\form\FormExperience;
+use App\Models\form\FormGender;
 use App\Models\form\FormLocation;
 use App\Models\form\FormOlympiad;
 use App\Models\form\FormPk;
@@ -33,6 +34,7 @@ class Registration extends Component
             'pks' => $this->getDataModel(FormPk::class),
             'olympiads' => $this->getDataModel(FormOlympiad::class),
             'commands' => $this->getDataModel(FormCommand::class),
+            'genders' => $this->getDataModel(FormGender::class),
         ]);
     }
 

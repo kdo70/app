@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Lineage 2 Chronicle 5: Oath of Blood</title>
-    <link rel="SHORTCUT ICON" href="img/favicon.ico">
+    <link rel="SHORTCUT ICON" href="{{asset('img/favicon.ico')}}">
 
     {{-- style:start --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
@@ -38,6 +38,6 @@
         console.log('%c Lineage 2 Chronicle 5: Oath of Blood ', 'background: #101934; color: #E2DAC2;');
     }
 </script>
-<script src="js/app.js"></script>
+<script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
