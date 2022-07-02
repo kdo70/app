@@ -15,7 +15,7 @@
         </div>
         <div class="event-footer">
             <div class="event-author">
-                Author: <a href="">Exeption</a>
+                Author: <a href="">{{$event->user->username}}</a>
                 <i class="fas fa-star"></i>
             </div>
             <div class="event-counter">
@@ -25,11 +25,11 @@
                 </div>
                 <div class="event-counter-item">
                     <i class="far fa-heart" aria-hidden="true"></i>
-                    111
+                    {{$event->rating()}}
                 </div>
                 <div class="event-counter-item">
                     <i class="far fa-comment" aria-hidden="true"></i>
-                    542
+                    {{$event->comments->count()}}
                 </div>
             </div>
             <div class="event-more">

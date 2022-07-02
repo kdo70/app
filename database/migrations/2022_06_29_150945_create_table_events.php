@@ -15,12 +15,16 @@ class CreateTableEvents extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('title')->comment('Заголовок');
             $table->text('preview_content')->comment('Контент для превью');
             $table->text('content')->comment('Контент');
             $table->string('slug')->comment('Служебный идентификатор');
+            $table->index('slug');
             $table->boolean('hide')->default(false)->comment('Не отображать на сайте');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
+            $table->comment('События');
         });
     }
 

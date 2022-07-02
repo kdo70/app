@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Event;
+use App\Models\Rating;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Event::factory()->count(10000)->create();
+        User::factory()->count(100)->create();
+        Event::factory()->hasComments(50)->count(100)->create();
+        Rating::factory()->count(1000)->create();
         $this->call([
             FormHandBookSeeder::class,
         ]);

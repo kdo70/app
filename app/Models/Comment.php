@@ -2,31 +2,23 @@
 
 namespace App\Models;
 
-use App\Casts\SlugCast;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-
-/**
- * @property mixed $created_at
- */
-class Event extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'slug' => SlugCast::class,
-    ];
+    public function object(): MorphTo
+    {
+        return $this->morphTo();
+    }
 
     public function getCreatedDateAttribute()
     {
-        return $this->created_at->format('d.m.Y в H:i');
-    }
-
-    public function comments(): MorphMany
-    {
-        return $this->morphMany(Comment::class, 'object');
+        return $this->created_at->format('d.m.Y в H:i:s');
     }
 
     public function ratings(): MorphMany
@@ -42,5 +34,10 @@ class Event extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function username()
+    {
+        return $this->user->username;
     }
 }

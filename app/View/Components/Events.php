@@ -30,13 +30,22 @@ class Events extends Component
     public function render()
     {
         if ($this->slug) {
-            $event = Event::query()->where('slug', '=', $this->slug)->first();
+            $event = Event::query()->with([
+                'comments.user.comments',
+                'comments.user.ratings',
+                'ratings',
+                'comments.ratings',
+            ])->where('slug', '=', $this->slug)->first();
 
             return view('components.event', [
                 'event' => $event
             ]);
         } else {
-            $paginator = Event::query()->paginate(10);
+            $paginator = Event::query()->with([
+                'comments',
+                'user',
+                'ratings',
+            ])->orderBy('created_at', 'desc')->paginate(10);
 
             return view('components.events', [
                 'paginator' => $paginator
